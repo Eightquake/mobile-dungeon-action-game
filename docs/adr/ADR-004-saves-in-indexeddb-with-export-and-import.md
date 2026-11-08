@@ -1,11 +1,12 @@
-# 0004. Saves in IndexedDB with export and import
+# ADR-004: Saves in IndexedDB with export and import
 
-- Status: Accepted
-- Date: 2026-11-08
+**Status:** Accepted  
+**Date:** 2026-11-08  
+**Requirements:** _pending: linked once docs/requirements.md exists_
 
 ## Context
 
-The Vision makes the codex of legendary powers a permanent collection and says a player's progress must never be silently lost, and that players can always take their save with them. The game must work fully offline, so saves live on the device. Optional cloud saves (ADR 0005) are a backup on top of the local save, never a replacement for it. Browsers can clear site storage, and on iOS this can happen for sites not added to the home screen.
+The Vision makes the codex of legendary powers a permanent collection and says a player's progress must never be silently lost, and that players can always take their save with them. The game must work fully offline, so saves live on the device. Optional cloud saves (ADR-005) are a backup on top of the local save, never a replacement for it. Browsers can clear site storage, and on iOS this can happen for sites not added to the home screen.
 
 ## Decision
 
@@ -18,6 +19,6 @@ The Vision makes the codex of legendary powers a permanent collection and says a
 ## Consequences
 
 - Progress is safe without accounts or servers, and players own their save.
-- Export and import make save editing trivial. Accepted, see ADR 0001.
+- Export and import make save editing trivial. Accepted, see ADR-001.
 - Imported saves are untrusted input. They must be validated and must never crash the game or corrupt an existing save.
 - Every save format change costs a migration and a test, which is the price of keeping pillar 3's promise.

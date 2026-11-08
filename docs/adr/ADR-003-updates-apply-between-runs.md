@@ -1,7 +1,8 @@
-# 0003. Updates apply between runs
+# ADR-003: Updates apply between runs
 
-- Status: Accepted
-- Date: 2026-11-08
+**Status:** Accepted  
+**Date:** 2026-11-08  
+**Requirements:** _pending: linked once docs/requirements.md exists_
 
 ## Context
 
@@ -13,7 +14,7 @@ New versions download in the background but never activate mid-run.
 
 - A waiting service worker activates only at a natural stopping point: the end-of-run summary, or the next launch.
 - A suspended run must survive an update. If a save can't be migrated, the run is never silently lost; the player is told what happened.
-- The save format is versioned (see ADR 0004), and every format change ships with a migration.
+- The save format is versioned (see ADR-004), and every format change ships with a migration.
 
 ## Consequences
 
