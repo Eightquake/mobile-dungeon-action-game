@@ -26,7 +26,7 @@ Proposed ADRs, in the order they block construction of the walking skeleton:
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| PR_LINK | UC-001 to UC-022, TC-001 to TC-008 | Requirements, glossary, entity model, use case diagram and specs, test cases, open questions, ADR-006 to ADR-011 (Proposed), Performance.md; Requirements lines of ADR-001 to ADR-005 linked | Nothing to play yet. Read: [requirements](requirements.md), [open questions](open_questions.md) |
+| [#2](https://github.com/Eightquake/mobile-dungeon-action-game/pull/2) | UC-001 to UC-022, TC-001 to TC-008 | Requirements, glossary, entity model, use case diagram and specs, test cases, open questions, ADR-006 to ADR-011 (Proposed), Performance.md; Requirements lines of ADR-001 to ADR-005 linked | Nothing to play yet. Read: [requirements](requirements.md), [open questions](open_questions.md) |
 
 ## Questions
 
@@ -49,7 +49,7 @@ Vision ambiguities. Each one has a working assumption in the specs and an entry 
 
 ## Done since last check-in
 
-- Inception and elaboration specs and Proposed ADRs (PR_LINK).
+- Inception and elaboration specs and Proposed ADRs ([#2](https://github.com/Eightquake/mobile-dungeon-action-game/pull/2)).
 
 ## Next up
 
