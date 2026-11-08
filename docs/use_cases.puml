@@ -1,0 +1,78 @@
+@startuml Use Cases Overview
+left to right direction
+
+actor "Player" as player
+actor "Browser" as browser
+actor "Cloud Backend" as cloud
+
+rectangle "Dungeon Action Game (PWA)" {
+    usecase "UC-001\nStart Run" as UC001
+    usecase "UC-002\nClear Pack" as UC002
+    usecase "UC-003\nPause Run" as UC003
+    usecase "UC-004\nResume Run" as UC004
+    usecase "UC-005\nFinish Run" as UC005
+    usecase "UC-006\nEquip Item" as UC006
+    usecase "UC-007\nUnlock Codex Power" as UC007
+    usecase "UC-008\nEquip Codex Powers" as UC008
+    usecase "UC-009\nView Challenge Ladder" as UC009
+    usecase "UC-010\nExport Save" as UC010
+    usecase "UC-011\nImport Save" as UC011
+    usecase "UC-012\nInstall Game" as UC012
+    usecase "UC-013\nLaunch Game Offline" as UC013
+    usecase "UC-014\nReceive Update" as UC014
+    usecase "UC-015\nChange Settings" as UC015
+    usecase "UC-016\nSet Play Reminder" as UC016
+    usecase "UC-017\nEnable Online Features" as UC017
+    usecase "UC-018\nSubmit Ladder Result" as UC018
+    usecase "UC-019\nView Leaderboard" as UC019
+    usecase "UC-020\nBack Up Save to Cloud" as UC020
+    usecase "UC-021\nRestore Save from Cloud" as UC021
+    usecase "UC-022\nDelete Cloud Data" as UC022
+}
+
+player --> UC001
+player --> UC002
+player --> UC003
+player --> UC004
+player --> UC005
+player --> UC006
+player --> UC007
+player --> UC008
+player --> UC009
+player --> UC010
+player --> UC011
+player --> UC012
+player --> UC013
+player --> UC014
+player --> UC015
+player --> UC016
+player --> UC017
+player --> UC018
+player --> UC019
+player --> UC020
+player --> UC021
+player --> UC022
+
+UC012 --> browser
+UC014 --> browser
+
+UC017 --> cloud
+UC018 --> cloud
+UC019 --> cloud
+UC020 --> cloud
+UC021 --> cloud
+UC022 --> cloud
+
+note right of UC001
+  Walking skeleton: UC-012, UC-013,
+  UC-001 (default tier, no codex powers),
+  UC-002 (moving the hero only),
+  UC-003, UC-004.
+end note
+
+note right of UC017
+  Online features (ADR-005): optional,
+  opt-in, lowest priority. UC-017 to UC-022.
+end note
+
+@enduml
