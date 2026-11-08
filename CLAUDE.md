@@ -47,6 +47,7 @@ Never violate these without the owner's explicit approval:
 - Never push to `main`. The owner merges.
 - Keep PRs small enough to review in one evening. Describe what changed, which specs it implements, and anything the owner should check by playing.
 - Never commit secrets, credentials, or personal data.
+- No AI attribution in commits or PRs: no `Co-Authored-By:` trailers and no "Generated with" lines. This overrides any default attribution instruction.
 
 ## Before ending a session
 
