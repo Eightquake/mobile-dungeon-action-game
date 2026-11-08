@@ -1,5 +1,10 @@
 {
   "enabledPlugins": {
     "aiup-core@ai-unified-process-marketplace": true
-  }
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "includeCoAuthoredBy": false
 }

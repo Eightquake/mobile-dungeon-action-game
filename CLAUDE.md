@@ -9,7 +9,7 @@ A solo evening hobby project: a short-session action RPG for phones, delivered a
 ## Sources of truth, in order
 
 1. `docs/vision.md`: the north star. Never edit it. If something in it seems wrong or ambiguous, raise it in `docs/STATUS.md`.
-2. Accepted ADRs in `docs/adr/`: binding technical decisions.
+2. Accepted ADRs in `docs/adr/` (AIUP format, `ADR-XXX-<slug>.md`): binding technical decisions.
 3. AIUP specifications in `docs/` (requirements, glossary, entity model, use cases, test cases).
 4. The code, which is derived from the above.
 
@@ -21,7 +21,7 @@ Never violate these without the owner's explicit approval:
 
 - **Zero cost.** Only free tools and free tiers. No paid services, no services that need a credit card, no paid dependencies or assets. If anything could ever incur a cost (hosting limits, CI minutes, storage, API calls), stop and write a Proposed ADR.
 - **No app stores.** The game ships as a PWA from a free static host.
-- **Offline first, backend optional.** The game is fully playable offline. A free-tier backend is allowed only for opt-in leaderboards and cloud saves, under the rules in ADR 0005. Nothing in a run may depend on the network.
+- **Offline first, backend optional.** The game is fully playable offline. A free-tier backend is allowed only for opt-in leaderboards and cloud saves, under the rules in ADR-005. Nothing in a run may depend on the network.
 - **No engagement mechanics** that the Vision's non-goals forbid (monetization, energy, timers, dailies, streaks, idle rewards, FOMO). If unsure, it's forbidden.
 
 ## How we work: AI Unified Process, spec-anchored
@@ -37,6 +37,7 @@ Never violate these without the owner's explicit approval:
 
 - Construction follows **Accepted** ADRs only.
 - Agents may write ADRs with status **Proposed**, including options and a recommendation. Only the owner accepts or rejects them.
+- Write and change ADRs with `/architecture-decision`. Every ADR links the NFR and constraint ids it serves in its `**Requirements:**` line. Never rewrite the Context, Decision, or Consequences of an Accepted ADR; supersede it with a new one.
 - Work that depends on a Proposed ADR waits. Continue with independent work instead.
 - Never resolve an open question from the Vision. Record it in `docs/STATUS.md`.
 
@@ -46,6 +47,7 @@ Never violate these without the owner's explicit approval:
 - Never push to `main`. The owner merges.
 - Keep PRs small enough to review in one evening. Describe what changed, which specs it implements, and anything the owner should check by playing.
 - Never commit secrets, credentials, or personal data.
+- No AI attribution in commits or PRs: no `Co-Authored-By:` trailers and no "Generated with" lines. This overrides any default attribution instruction.
 
 ## Before ending a session
 

@@ -1,7 +1,8 @@
-# 0002. Offline-first service worker
+# ADR-002: Offline-first service worker
 
-- Status: Accepted
-- Date: 2026-11-08
+**Status:** Accepted  
+**Date:** 2026-11-08  
+**Requirements:** _pending: linked once docs/requirements.md exists_
 
 ## Context
 
@@ -17,7 +18,7 @@ A service worker caches the game so that after the first load, it runs without a
 - Built assets use content-hashed filenames and are served cache-first. Only the entry HTML and the service worker itself are revalidated.
 - Old caches are deleted when a new version activates.
 
-How and when a new version activates is decided in ADR 0003.
+How and when a new version activates is decided in ADR-003.
 
 ## Consequences
 

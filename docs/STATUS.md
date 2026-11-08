@@ -14,7 +14,7 @@ Last updated: YYYY-MM-DD by <agent/session>
 
 <!-- Things only the owner can unblock: Proposed ADRs, Vision questions, cost or scope concerns. Most important first. -->
 
-- [ ] ADR NNNN – <title>: <one-line summary and the agent's recommendation>
+- [ ] ADR-NNN – <title>: <one-line summary and the agent's recommendation>
 - [ ] <Vision ambiguity or conflict>: <what's unclear and what it blocks>
 
 ## Ready for review
@@ -56,4 +56,4 @@ Last updated: YYYY-MM-DD by <agent/session>
 - Specs: <`/spec-review` clean, or findings>
 - CI: <green, or what's failing>
 - Performance budgets: <OK, or which budget is exceeded and where>
-- Free-tier usage: <OK, or which quota is getting close, per ADR 0005>
+- Free-tier usage: <OK, or which quota is getting close, per ADR-005>

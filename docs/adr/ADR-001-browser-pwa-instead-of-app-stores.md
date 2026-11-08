@@ -1,7 +1,8 @@
-# 0001. Browser PWA instead of app stores
+# ADR-001: Browser PWA instead of app stores
 
-- Status: Accepted
-- Date: 2026-11-08
+**Status:** Accepted  
+**Date:** 2026-11-08  
+**Requirements:** _pending: linked once docs/requirements.md exists_
 
 ## Context
 
@@ -18,7 +19,7 @@ App stores are out of scope. If the game later finds an audience, the same web b
 ## Consequences
 
 - No upfront cost and no store review. Releasing is deploying static files.
-- Single-player save editing is possible. Accepted: it only affects the player's own game, and there is nothing competitive or purchasable to protect. Leaderboards (ADR 0005) reopen this question.
+- Single-player save editing is possible. Accepted: it only affects the player's own game, and there is nothing competitive or purchasable to protect. Leaderboards (ADR-005) reopen this question.
 - Browser constraints apply: lower performance headroom than native, audio must be unlocked by a user gesture, and browser gestures can interfere with touch controls. These are handled through `docs/Performance.md` and input design.
-- On iOS, storage for sites not added to the home screen can be cleared. See ADR 0004.
+- On iOS, storage for sites not added to the home screen can be cleared. See ADR-004.
 - Discoverability is lower than in a store. Accepted, given the unknown audience.
