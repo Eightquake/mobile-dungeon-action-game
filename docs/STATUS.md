@@ -30,7 +30,7 @@ Each has a working assumption in the specs and an entry in [open_questions.md](o
 - **Please confirm:** salvage yields nothing (OQ-023); abandoned runs don't count for bad-luck protection (OQ-024); a paused run can be finished after an update but is never sent to the leaderboard (OQ-025); 3 restorable copies (OQ-026).
 - **Numbers to confirm:** 5 s to run, 4% battery, 5 MB precache, max 6 gear slots, readable-number limits (OQ-006 to OQ-011, OQ-013).
 - **Android:** only Chromium in CI covers NFR-023. **Rested bonus** and **one-time purchase** stay open in the Vision.
-- **Provisional tuning values:** `data/tuning.json` holds starting values for numbers that `docs/Performance.md` marks TODO (5 steps per frame at most, pixel-ratio cap 2) and for the stick and camera. The stick and movement felt right on the phone (2026-11-09); the two measured values are still set in #10.
+- **Provisional tuning values:** `data/tuning.json` holds starting values for numbers that `docs/Performance.md` marks TODO (5 steps per frame at most, pixel-ratio cap 2) and for the stick and camera. Hero speed, stick size, and camera angle were confirmed on the phone (2026-11-09); only the two measured values are still set in #10.
 - **Landscape lock on iPhone:** Safari has historically ignored the manifest's orientation lock, so on the reference phone turning to portrait will likely pause the run (UC-003 A6) instead of being locked.
 
 ## Blocked
