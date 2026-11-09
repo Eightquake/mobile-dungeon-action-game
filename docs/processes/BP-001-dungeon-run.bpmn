@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" id="Definitions_BP-001" targetNamespace="http://bpmn.io/schema/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI">
+  <bpmn:collaboration id="Collaboration_BP-001">
+    <bpmn:participant id="Participant_Game" name="Dungeon Action Game (PWA)" processRef="BP-001" />
+  </bpmn:collaboration>
+  <bpmn:process id="BP-001" name="Dungeon Run" isExecutable="false">
+    <bpmn:documentation>Goal: A player plays one run of the challenge ladder to its end, across as many sittings as the interruptions take, and leaves it with a stronger codex.
+Trigger: The player wants to play. The next run is a new instance of the process.
+Requirements: FR-001, FR-002, FR-003, FR-004, FR-005, FR-007, FR-008, FR-009, FR-010, FR-011, FR-012, FR-013, FR-014, FR-015, FR-016, FR-018, FR-022
+Status: Draft</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_BP-001">
+      <bpmn:lane id="Lane_Player" name="Player">
+        <bpmn:flowNodeRef>StartEvent_PlayWanted</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_LaunchGameOffline</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_StoredRun</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_StartRun</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_ResumeRun</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_ClearPack</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_AfterPack</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_PauseRun</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_AfterPause</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_RunPaused</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_FinishRun</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_NewPower</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_SacrificeLegendary</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_EquipCodexPowers</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_RunFinished</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_PlayWanted" name="Player wants to play" />
+    <bpmn:userTask id="Activity_LaunchGameOffline" name="UC-013 Launch Game Offline" />
+    <bpmn:exclusiveGateway id="Gateway_StoredRun" name="Stored run in the save?" />
+    <bpmn:userTask id="Activity_StartRun" name="UC-001 Start Run" />
+    <bpmn:userTask id="Activity_ResumeRun" name="UC-004 Resume Run" />
+    <bpmn:userTask id="Activity_ClearPack" name="UC-002 Clear Pack">
+      <bpmn:documentation>Repeats for every pack of the tier until the guardian is defeated, the hero dies, or the run is paused.</bpmn:documentation>
+      <bpmn:standardLoopCharacteristics />
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_AfterPack" name="How does the run go on?" />
+    <bpmn:userTask id="Activity_PauseRun" name="UC-003 Pause Run" />
+    <bpmn:exclusiveGateway id="Gateway_AfterPause" name="What does the player do with the paused run?" />
+    <bpmn:endEvent id="EndEvent_RunPaused" name="Run paused for later" />
+    <bpmn:userTask id="Activity_FinishRun" name="UC-005 Finish Run" />
+    <bpmn:exclusiveGateway id="Gateway_NewPower" name="New legendary power waiting?" />
+    <bpmn:userTask id="Activity_SacrificeLegendary" name="UC-007 Sacrifice Legendary" />
+    <bpmn:userTask id="Activity_EquipCodexPowers" name="UC-008 Equip Codex Powers" />
+    <bpmn:endEvent id="EndEvent_RunFinished" name="Run finished" />
+    <bpmn:sequenceFlow id="Flow_PlayWanted" sourceRef="StartEvent_PlayWanted" targetRef="Activity_LaunchGameOffline" />
+    <bpmn:sequenceFlow id="Flow_Launched" sourceRef="Activity_LaunchGameOffline" targetRef="Gateway_StoredRun" />
+    <bpmn:sequenceFlow id="Flow_StoredRun_No" name="no" sourceRef="Gateway_StoredRun" targetRef="Activity_StartRun" />
+    <bpmn:sequenceFlow id="Flow_StoredRun_Yes" name="yes, resume it" sourceRef="Gateway_StoredRun" targetRef="Activity_ResumeRun" />
+    <bpmn:sequenceFlow id="Flow_RunStarted" sourceRef="Activity_StartRun" targetRef="Activity_ClearPack" />
+    <bpmn:sequenceFlow id="Flow_RunResumed" sourceRef="Activity_ResumeRun" targetRef="Activity_ClearPack" />
+    <bpmn:sequenceFlow id="Flow_PackCleared" sourceRef="Activity_ClearPack" targetRef="Gateway_AfterPack" />
+    <bpmn:sequenceFlow id="Flow_AfterPack_Ended" name="guardian defeated or hero died" sourceRef="Gateway_AfterPack" targetRef="Activity_FinishRun" />
+    <bpmn:sequenceFlow id="Flow_AfterPack_Interrupted" name="paused or interrupted" sourceRef="Gateway_AfterPack" targetRef="Activity_PauseRun" />
+    <bpmn:sequenceFlow id="Flow_Paused" sourceRef="Activity_PauseRun" targetRef="Gateway_AfterPause" />
+    <bpmn:sequenceFlow id="Flow_AfterPause_Leave" name="leaves the game" sourceRef="Gateway_AfterPause" targetRef="EndEvent_RunPaused" />
+    <bpmn:sequenceFlow id="Flow_AfterPause_Resume" name="resumes now" sourceRef="Gateway_AfterPause" targetRef="Activity_ResumeRun" />
+    <bpmn:sequenceFlow id="Flow_AfterPause_Abandon" name="abandons the run" sourceRef="Gateway_AfterPause" targetRef="Activity_FinishRun" />
+    <bpmn:sequenceFlow id="Flow_RunEnded" sourceRef="Activity_FinishRun" targetRef="Gateway_NewPower" />
+    <bpmn:sequenceFlow id="Flow_NewPower_Yes" name="yes" sourceRef="Gateway_NewPower" targetRef="Activity_SacrificeLegendary" />
+    <bpmn:sequenceFlow id="Flow_NewPower_No" name="no" sourceRef="Gateway_NewPower" targetRef="EndEvent_RunFinished" />
+    <bpmn:sequenceFlow id="Flow_PowerUnlocked" sourceRef="Activity_SacrificeLegendary" targetRef="Activity_EquipCodexPowers" />
+    <bpmn:sequenceFlow id="Flow_PowersEquipped" sourceRef="Activity_EquipCodexPowers" targetRef="EndEvent_RunFinished" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_BP-001">
+      <bpmndi:BPMNShape id="Participant_Game_di" bpmnElement="Participant_Game" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="2178" height="360" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Player_di" bpmnElement="Lane_Player" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="2148" height="360" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_PlayWanted_di" bpmnElement="StartEvent_PlayWanted">
+        <dc:Bounds x="302" y="122" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_LaunchGameOffline_di" bpmnElement="Activity_LaunchGameOffline">
+        <dc:Bounds x="420" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_StoredRun_di" bpmnElement="Gateway_StoredRun" isMarkerVisible="true">
+        <dc:Bounds x="595" y="115" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_StartRun_di" bpmnElement="Activity_StartRun">
+        <dc:Bounds x="720" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_ResumeRun_di" bpmnElement="Activity_ResumeRun">
+        <dc:Bounds x="1470" y="340" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_ClearPack_di" bpmnElement="Activity_ClearPack">
+        <dc:Bounds x="870" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_AfterPack_di" bpmnElement="Gateway_AfterPack" isMarkerVisible="true">
+        <dc:Bounds x="1045" y="115" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_PauseRun_di" bpmnElement="Activity_PauseRun">
+        <dc:Bounds x="1170" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_AfterPause_di" bpmnElement="Gateway_AfterPause" isMarkerVisible="true">
+        <dc:Bounds x="1345" y="115" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_RunPaused_di" bpmnElement="EndEvent_RunPaused">
+        <dc:Bounds x="1502" y="242" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_FinishRun_di" bpmnElement="Activity_FinishRun">
+        <dc:Bounds x="1470" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_NewPower_di" bpmnElement="Gateway_NewPower" isMarkerVisible="true">
+        <dc:Bounds x="1645" y="115" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_SacrificeLegendary_di" bpmnElement="Activity_SacrificeLegendary">
+        <dc:Bounds x="1770" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_EquipCodexPowers_di" bpmnElement="Activity_EquipCodexPowers">
+        <dc:Bounds x="1920" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_RunFinished_di" bpmnElement="EndEvent_RunFinished">
+        <dc:Bounds x="2252" y="122" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_PlayWanted_di" bpmnElement="Flow_PlayWanted">
+        <di:waypoint x="338" y="140" />
+        <di:waypoint x="420" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Launched_di" bpmnElement="Flow_Launched">
+        <di:waypoint x="520" y="140" />
+        <di:waypoint x="595" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_StoredRun_No_di" bpmnElement="Flow_StoredRun_No">
+        <di:waypoint x="645" y="140" />
+        <di:waypoint x="720" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_StoredRun_Yes_di" bpmnElement="Flow_StoredRun_Yes">
+        <di:waypoint x="620" y="165" />
+        <di:waypoint x="620" y="380" />
+        <di:waypoint x="1470" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_RunStarted_di" bpmnElement="Flow_RunStarted">
+        <di:waypoint x="820" y="140" />
+        <di:waypoint x="870" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_RunResumed_di" bpmnElement="Flow_RunResumed">
+        <di:waypoint x="1520" y="340" />
+        <di:waypoint x="1520" y="85" />
+        <di:waypoint x="920" y="85" />
+        <di:waypoint x="920" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_PackCleared_di" bpmnElement="Flow_PackCleared">
+        <di:waypoint x="970" y="140" />
+        <di:waypoint x="1045" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_AfterPack_Ended_di" bpmnElement="Flow_AfterPack_Ended">
+        <di:waypoint x="1095" y="140" />
+        <di:waypoint x="1470" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_AfterPack_Interrupted_di" bpmnElement="Flow_AfterPack_Interrupted">
+        <di:waypoint x="1095" y="140" />
+        <di:waypoint x="1170" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Paused_di" bpmnElement="Flow_Paused">
+        <di:waypoint x="1270" y="140" />
+        <di:waypoint x="1345" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_AfterPause_Leave_di" bpmnElement="Flow_AfterPause_Leave">
+        <di:waypoint x="1370" y="165" />
+        <di:waypoint x="1370" y="260" />
+        <di:waypoint x="1502" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_AfterPause_Resume_di" bpmnElement="Flow_AfterPause_Resume">
+        <di:waypoint x="1370" y="165" />
+        <di:waypoint x="1370" y="380" />
+        <di:waypoint x="1470" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_AfterPause_Abandon_di" bpmnElement="Flow_AfterPause_Abandon">
+        <di:waypoint x="1395" y="140" />
+        <di:waypoint x="1470" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_RunEnded_di" bpmnElement="Flow_RunEnded">
+        <di:waypoint x="1570" y="140" />
+        <di:waypoint x="1645" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_NewPower_Yes_di" bpmnElement="Flow_NewPower_Yes">
+        <di:waypoint x="1695" y="140" />
+        <di:waypoint x="1770" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_NewPower_No_di" bpmnElement="Flow_NewPower_No">
+        <di:waypoint x="1695" y="140" />
+        <di:waypoint x="2252" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_PowerUnlocked_di" bpmnElement="Flow_PowerUnlocked">
+        <di:waypoint x="1870" y="140" />
+        <di:waypoint x="1920" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_PowersEquipped_di" bpmnElement="Flow_PowersEquipped">
+        <di:waypoint x="2020" y="140" />
+        <di:waypoint x="2252" y="140" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
