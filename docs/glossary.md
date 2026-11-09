@@ -52,6 +52,7 @@ One name per concept. Requirements, use cases, test cases, and code use these te
 | Tuning Data            | The data files that hold combat and balance values, such as damage, drop chances, and hit-stop durations.                                                  |                     |
 | Play Reminder          | An opt-in message the player sets up, shown after a play time they choose, that never locks or limits anything.                                           | Session limit       |
 | Online Features        | The optional features that use the cloud backend: leaderboard and cloud save.                                                                               | Online mode         |
+| Recovery Code          | The code that shows the player key of an online identity, so the player can use the same online identity on another device; whoever holds it controls the player's cloud data. |                     |
 | Online Identity        | The random key and display name under which a device uses the online features; it holds no personal data and is never part of a save export.            |                     |
 | Pending Submission     | A ladder result kept on the device until it is sent to the leaderboard.                                                                                   |                     |
 | Cloud Backend          | The optional free-tier server that stores leaderboard entries and cloud saves.                                                                              | Server              |

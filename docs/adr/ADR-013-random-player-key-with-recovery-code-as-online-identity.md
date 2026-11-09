@@ -1,6 +1,6 @@
 # ADR-013: Random player key with a recovery code as the online identity
 
-**Status:** Proposed  
+**Status:** Accepted  
 **Date:** 2026-11-09  
 **Requirements:** C-001, C-019, C-020, C-021, NFR-026
 
@@ -28,7 +28,7 @@ ADR-012 proposes a backend we write ourselves, so any of the options below can b
 
 ## Decision
 
-Recommended: **Option A, a random player key with a recovery code.**
+Decided: **Option A, a random player key with a recovery code.**
 
 - UC-017 creates the key with the browser's cryptographic random generator and registers it with the display name.
   The backend stores a hash of the key, never the key, and identifies the player by it on every request.

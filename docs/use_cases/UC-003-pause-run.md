@@ -7,7 +7,7 @@
 **Primary Actor:** Player  
 **Goal:** The player stops the run at any moment and can leave the game without losing anything.  
 **Trigger:** Player presses the pause button, or the game is hidden because the player switches apps, locks the phone, or receives a call, or the browser takes away the game's graphics, or the player turns the phone to portrait orientation.  
-**Status:** Draft  
+**Status:** Approved  
 
 **Requirements:** [FR-008, NFR-015, NFR-017, C-007, C-013, C-016](../requirements.md)  
 **Priority:** High  
@@ -73,7 +73,7 @@
 
 ### A6: Phone turned to portrait
 
-**Trigger:** The player turns the phone to portrait orientation instead of pressing pause (step 1)  
+**Trigger:** The player turns the phone to portrait orientation where the game is not locked to landscape, for example in a browser tab, instead of pressing pause (step 1)  
 **Flow:**
 
 1. System stops the simulation, the sounds, and the rendering, as in step 2.

@@ -15,7 +15,7 @@
 
 ## Preconditions
 
-- The online features are enabled on this device with the online identity that stored the cloud save.
+- The online features are enabled on this device with the online identity that stored the cloud save, on a new device by entering its recovery code (UC-017 A5).
 - The game shows the title screen.
 
 ## Main Success Scenario

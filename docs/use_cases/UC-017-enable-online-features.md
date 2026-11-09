@@ -23,9 +23,9 @@
 1. Player chooses to enable the online features.
 2. System explains which data leaves the device for each online feature — the display name, the ladder results with their input logs, and the cloud save — and that the player can delete it at any time.
 3. Player chooses a display name and agrees.
-4. System registers the player with the Cloud Backend under a random identity that contains no personal data.
+4. System creates a random player key on the device and registers the player with the Cloud Backend under it, with no personal data.
 5. Cloud Backend confirms the registration.
-6. System stores the online identity on the device and shows the online features as enabled.
+6. System stores the online identity on the device, shows its recovery code with the advice to keep it safe, and shows the online features as enabled.
 
 ## Alternative Flows
 
@@ -61,6 +61,25 @@
 1. System asks for another display name.
 2. Use case continues at step 3.
 
+### A5: Player uses an existing online identity
+
+**Trigger:** Player chooses to enter the recovery code of an online identity from another device instead of a display name (step 3)  
+**Flow:**
+
+1. Player enters the recovery code.
+2. System asks the Cloud Backend to confirm the online identity of the recovery code.
+3. Cloud Backend confirms the online identity and returns its display name.
+4. System stores the online identity on the device and shows the online features as enabled.
+5. Use case ends.
+
+### A6: Recovery code unknown
+
+**Trigger:** The Cloud Backend knows no online identity for the entered recovery code, or refuses further attempts from the device (step 5)  
+**Flow:**
+
+1. System keeps the online features off and tells the player that the recovery code is unknown or that too many codes were tried.
+2. Use case ends.
+
 ## Postconditions
 
 ### Success Postconditions
@@ -89,3 +108,7 @@ Every online feature is additive: a Cloud Backend that is down, slow, or out of 
 ### BR-004: Free tier only
 
 The Cloud Backend runs on a free tier that stops serving instead of billing when a quota is exceeded (C-001, C-004).
+
+### BR-005: Recovery code
+
+The recovery code is the only way to use an online identity on another device. The game shows it when the online features are enabled and on request in the settings, never sends it anywhere but to the Cloud Backend, and tells the player that a lost recovery code cannot be replaced. The Cloud Backend keeps nothing from which the recovery code can be read back.

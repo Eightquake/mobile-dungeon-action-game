@@ -235,9 +235,13 @@ The Vision says runs are complete in themselves and the ladder tests skill. Read
 **Element:** UC-021
 **Raised by:** /use-case-spec, 2026-11-08
 **Blocking:** Yes
-**Status:** Open
+**Status:** Resolved
 
 UC-021 needs the online identity that stored the cloud save, but how a player carries that identity to a new phone (recovery code, sign-in with an outside identity provider, or another way) is the identity decision that ADR-005 leaves to a later ADR.
+
+**Answer:** With a recovery code (ADR-013). Enabling the online features creates a random player key and shows it as a recovery code; entering the code on a new device restores the online identity. The Cloud Backend stores only a hash of the key.
+**Answered by:** Owner, 2026-11-09
+**Resolved in:** ADR-013, UC-017 step 4, step 6, A5, A6, BR-005, UC-021 Preconditions, Glossary: Recovery Code, Entity: CLOUD_PLAYER.player_key
 
 ## OQ-023: Does salvaging an item yield anything?
 
@@ -284,7 +288,11 @@ One copy could be pushed out at once by the next replacement, and that would bre
 **Element:** UC-003 A6
 **Raised by:** /spec-review fix, 2026-11-09
 **Blocking:** No
-**Status:** Open
+**Status:** Resolved
 **Assumed:** Yes. The run pauses and is stored like a pause by the button, and the prompt to rotate the phone back to landscape shows over the pause screen. When the phone is back in landscape, the pause screen shows, and the player resumes from there.
 
 The game is played in landscape only (OQ-012), and UC-013 A4 asks to rotate only at launch. A phone turned during a run, often by accident, would otherwise keep fighting with controls the player can no longer reach. The alternative is to keep the run going behind the rotate prompt, which costs the player health for an accident.
+
+**Answer:** Lock the orientation where possible. The installed game is locked to landscape where the device allows it; where it is not locked, for example in a browser tab, turning the phone to portrait pauses the run as assumed.
+**Answered by:** Owner, 2026-11-09
+**Resolved in:** UC-003 A6, UC-012 step 8

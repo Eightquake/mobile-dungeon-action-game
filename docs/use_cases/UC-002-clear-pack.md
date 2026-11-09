@@ -7,7 +7,7 @@
 **Primary Actor:** Player  
 **Goal:** The player defeats a pack of enemies with the hero, moving and using skills with tight, responsive controls and weighty hits.  
 **Trigger:** A pack of enemies notices the hero during a run.  
-**Status:** Draft  
+**Status:** Approved  
 
 **Requirements:** [FR-002, FR-003, FR-004, FR-005, NFR-001, NFR-002, NFR-003, NFR-004, NFR-005, NFR-006, NFR-007, NFR-008, NFR-012, C-024, C-025](../requirements.md)  
 **Priority:** High  
