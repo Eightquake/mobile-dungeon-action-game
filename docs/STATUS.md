@@ -18,8 +18,7 @@ Last updated: 2026-11-09 by Claude Code (walking skeleton 2 of 4: install and of
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#45](https://github.com/Eightquake/mobile-dungeon-action-game/pull/45) | none (#47 builds on it) | ADR-015 accepted (option A) | Nothing to play |
-| [#47](https://github.com/Eightquake/mobile-dungeon-action-game/pull/47) | UC-012, UC-013 (part) | Manifest and icon, own service worker and precache plugin (ADR-015), install hint, persistent storage, rotate prompt. Merge #45 first | On the phone: add the preview to the home screen, turn on flight mode, launch from the icon |
+| [#47](https://github.com/Eightquake/mobile-dungeon-action-game/pull/47) | UC-012, UC-013 (part) | Manifest and icon, own service worker and precache plugin (ADR-015), install hint, persistent storage, rotate prompt | On the phone: add the preview to the home screen, turn on flight mode, launch from the icon |
 
 ## Questions
 
@@ -40,7 +39,7 @@ None. The online features (UC-017 to UC-022) are unblocked but low priority, aft
 ## Done since last check-in
 
 - Still open in UC-012 and UC-013 after #47: storing the dismissed hint with the save (PR 4), the play and resume options (PR 3, PR 4), the hint in the settings (UC-015), import (UC-011), online features (UC-017).
-- Walking skeleton project setup (#25), merged. Issue #9 updated.
+- Walking skeleton project setup (#25), ADR-015 accepted and ADR-006 amended (#45), Dependabot group for TypeScript (#46), all merged.
 - Elaboration: stack file (#7), walking skeleton review fixes (#16), BP-001 (#17), CI `spec-lint` (#18), LICENSE (#19), Proposed ADR-012 to ADR-014 (#20), all merged.
 - Walking skeleton use cases UC-001, UC-002, UC-003, UC-004, UC-012, UC-013 approved; ADR-012 to ADR-014 accepted (#22, merged).
 - CLAUDE.md test rules (#24). Repository setup (#15): ruleset on `main` with `spec-lint` required, CodeQL default setup, secret scanning with push protection, Dependabot alerts and security updates, Vercel fork protection. Dependabot version updates for GitHub Actions (#23).
