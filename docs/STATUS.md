@@ -8,7 +8,7 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (ADR-015 accepted)
+Last updated: 2026-11-09 by Claude Code (walking skeleton 2 of 4: install and offline launch)
 
 ## Needs your decision
 
@@ -18,7 +18,8 @@ Last updated: 2026-11-09 by Claude Code (ADR-015 accepted)
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#45](https://github.com/Eightquake/mobile-dungeon-action-game/pull/45) | none (#9 PR 2 builds on it) | ADR-015 accepted (option A) | Nothing to play |
+| [#45](https://github.com/Eightquake/mobile-dungeon-action-game/pull/45) | none (#47 builds on it) | ADR-015 accepted (option A) | Nothing to play |
+| [#47](https://github.com/Eightquake/mobile-dungeon-action-game/pull/47) | UC-012, UC-013 (part) | Manifest and icon, own service worker and precache plugin (ADR-015), install hint, persistent storage, rotate prompt. Merge #45 first | On the phone: add the preview to the home screen, turn on flight mode, launch from the icon |
 
 ## Questions
 
@@ -38,6 +39,7 @@ None. The online features (UC-017 to UC-022) are unblocked but low priority, aft
 
 ## Done since last check-in
 
+- Still open in UC-012 and UC-013 after #47: storing the dismissed hint with the save (PR 4), the play and resume options (PR 3, PR 4), the hint in the settings (UC-015), import (UC-011), online features (UC-017).
 - Walking skeleton project setup (#25), merged. Issue #9 updated.
 - Elaboration: stack file (#7), walking skeleton review fixes (#16), BP-001 (#17), CI `spec-lint` (#18), LICENSE (#19), Proposed ADR-012 to ADR-014 (#20), all merged.
 - Walking skeleton use cases UC-001, UC-002, UC-003, UC-004, UC-012, UC-013 approved; ADR-012 to ADR-014 accepted (#22, merged).
@@ -45,7 +47,7 @@ None. The online features (UC-017 to UC-022) are unblocked but low priority, aft
 
 ## Next up
 
-- **Walking skeleton** ([#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9)): UC-012 + UC-013 on top of #45 (the dismissed install hint is stored in the save, so until PR 4 the dismissal lasts only for the session), then UC-001 + UC-002 step 2, then UC-003 + UC-004.
+- **Walking skeleton** ([#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9)): UC-001 + UC-002 step 2, then UC-003 + UC-004.
 - Add `check`, `unit`, `e2e`, `budget`, `security` as required checks in the ruleset.
 - Then the phone measurements ([#10](https://github.com/Eightquake/mobile-dungeon-action-game/issues/10)).
 - Later: southpaw option ([#14](https://github.com/Eightquake/mobile-dungeon-action-game/issues/14)); replay verification of leaderboard results, ADR-014 option C ([#21](https://github.com/Eightquake/mobile-dungeon-action-game/issues/21)).
