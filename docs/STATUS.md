@@ -8,18 +8,17 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (owner approved the walking skeleton use cases and accepted ADR-012 to ADR-014; Elaboration done, Construction starts)
+Last updated: 2026-11-09 by Claude Code (repository setup done; Elaboration done, Construction starts)
 
 ## Needs your decision
 
-- **One-time repository setup:** branch protection with `spec-lint` as a required check, Dependabot, CodeQL, secret scanning ([#15](https://github.com/Eightquake/mobile-dungeon-action-game/issues/15)).
 - **Layer plugin:** install `aiup-playwright` for the E2E layer, or not? Optional, see `docs/architecture/stack.md`.
 
 ## Ready for review
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#22](https://github.com/Eightquake/mobile-dungeon-action-game/pull/22) | UC-001–004, 012, 013, 017, 018, 021 | Your decisions written down: six use cases `Approved`; ADR-012 and ADR-013 `Accepted`; ADR-014 rewritten to checks only and `Accepted`; OQ-022 and OQ-027 resolved in the specs | Nothing to play |
+| [#23](https://github.com/Eightquake/mobile-dungeon-action-game/pull/23) | none | Dependabot weekly grouped updates for GitHub Actions; the last part of the repository setup (#15) | Nothing to play |
 
 ## Questions
 
@@ -40,7 +39,8 @@ None. The online features (UC-017 to UC-022) are unblocked but low priority, aft
 ## Done since last check-in
 
 - Elaboration: stack file (#7), walking skeleton review fixes (#16), BP-001 (#17), CI `spec-lint` (#18), LICENSE (#19), Proposed ADR-012 to ADR-014 (#20), all merged.
-- Walking skeleton use cases UC-001, UC-002, UC-003, UC-004, UC-012, UC-013 approved; ADR-012 to ADR-014 accepted (#22).
+- Walking skeleton use cases UC-001, UC-002, UC-003, UC-004, UC-012, UC-013 approved; ADR-012 to ADR-014 accepted (#22, merged).
+- Repository setup (#15): ruleset on `main` with `spec-lint` required, CodeQL default setup, secret scanning with push protection, Dependabot alerts and security updates, Vercel fork protection.
 
 ## Next up
 
@@ -51,6 +51,6 @@ None. The online features (UC-017 to UC-022) are unblocked but low priority, aft
 ## Health
 
 - Specs: `spec_lint.py --strict` 0 errors, 0 warnings, 13 infos (system-wide constraints; UC-015 and UC-016 in no test case). Use cases: 6 Approved, 16 Draft. No blocking question.
-- CI: `spec-lint` only; the other five jobs come with the project setup (#8).
+- CI: `spec-lint` only, required on `main`; the other five jobs come with the project setup (#8) and must then be added to the ruleset. CodeQL default setup on.
 - Performance budgets: not measured yet (all TODO, #10).
 - Free-tier usage: OK, nothing deployed besides Vercel previews.
