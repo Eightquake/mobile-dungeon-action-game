@@ -278,3 +278,13 @@ ADR-003 says a suspended run must survive an update. A deterministic replay need
 **Assumed:** The 3 most recent, whatever replaced the save (import, cloud restore, failed migration).
 
 One copy could be pushed out at once by the next replacement, and that would break the promise that progress is never silently lost.
+
+## OQ-027: Does turning the phone to portrait during a run pause it?
+
+**Element:** UC-003 A6
+**Raised by:** /spec-review fix, 2026-11-09
+**Blocking:** No
+**Status:** Open
+**Assumed:** Yes. The run pauses and is stored like a pause by the button, and the prompt to rotate the phone back to landscape shows over the pause screen. When the phone is back in landscape, the pause screen shows, and the player resumes from there.
+
+The game is played in landscape only (OQ-012), and UC-013 A4 asks to rotate only at launch. A phone turned during a run, often by accident, would otherwise keep fighting with controls the player can no longer reach. The alternative is to keep the run going behind the rotate prompt, which costs the player health for an accident.

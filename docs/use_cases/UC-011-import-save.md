@@ -6,7 +6,7 @@
 **Use Case Name:** Import Save  
 **Primary Actor:** Player  
 **Goal:** The player restores their progress from a save export, without ever risking the save they have now.  
-**Trigger:** Player chooses to import a save in the settings.  
+**Trigger:** Player chooses to import a save in the settings, or when the game finds no readable save at launch (UC-013 A6).  
 **Status:** Draft  
 
 **Requirements:** [FR-020, NFR-018, NFR-020, C-003, C-017](../requirements.md)  
@@ -14,7 +14,7 @@
 
 ## Preconditions
 
-- The game shows the title screen.
+- The game shows the title screen or the settings, or has told the player at launch that no readable save was found (UC-013 A5).
 
 ## Main Success Scenario
 

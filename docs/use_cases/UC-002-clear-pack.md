@@ -75,7 +75,7 @@
 
 ### A6: Player pauses
 
-**Trigger:** Player presses the pause button, or the game is hidden (step 2)  
+**Trigger:** Player presses the pause button, the game is hidden, or the phone is turned to portrait orientation (step 2)  
 **Flow:**
 
 1. System continues with UC-003 Pause Run.
