@@ -57,8 +57,8 @@ In detail:
 - No automatic `skipWaiting()` and no `clients.claim()`. A new version waits until every tab of the game is closed,
   or until the end-of-run summary asks it to activate (ADR-003, C-014, UC-014).
 - The web app manifest (`manifest.webmanifest`) and the icons are static files in `public/`. `index.html` links them.
-- vite-plugin-pwa and Workbox are not added. This replaces the vite-plugin-pwa bullet of ADR-006's Decision. When the
-  owner accepts this ADR, that bullet of ADR-006 is amended in place to point here, at the owner's request. The rest
+- vite-plugin-pwa and Workbox are not added. This replaces the vite-plugin-pwa bullet of ADR-006's Decision. ADR-006's
+  bullet was amended in place to point here, at the owner's request (2026-11-09). The rest
   of ADR-006 stands.
 - The CI `budget` job (`scripts/check-budget.mjs`) reads the precache list from `dist/sw.js` and measures exactly
   those files against NFR-016, instead of every file in `dist/`.

@@ -12,7 +12,6 @@ Last updated: 2026-11-09 by Claude Code (ADR-015 accepted)
 
 ## Needs your decision
 
-- **ADR-006 amendment:** ADR-015 (accepted) replaces ADR-006's vite-plugin-pwa bullet. May I amend that bullet in place to point to ADR-015?
 - **Layer plugin:** install `aiup-playwright` for the E2E layer, or not? Optional, see `docs/architecture/stack.md`.
 
 ## Ready for review
