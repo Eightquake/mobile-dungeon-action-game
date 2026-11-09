@@ -1,0 +1,29 @@
+:root {
+  color-scheme: dark;
+  --bg: #14110f;
+  --fg: #ece4d8;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, sans-serif;
+  overscroll-behavior: none;
+  touch-action: none;
+  user-select: none;
+}
+
+#app {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.5rem, 6vmin, 3rem);
+  letter-spacing: 0.05em;
+}

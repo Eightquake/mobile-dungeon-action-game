@@ -1,5 +1,4 @@
 # Dependabot version updates (ADR-011). Alerts and security updates are enabled in the repository settings.
-# The npm ecosystem is added together with package.json (walking skeleton project setup, #9).
 version: 2
 updates:
   - package-ecosystem: github-actions
@@ -8,6 +7,17 @@ updates:
       interval: weekly
     groups:
       github-actions:
-        patterns: ["*"]
+        patterns: ['*']
     commit-message:
-      prefix: "CI"
+      prefix: 'CI'
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      npm-development:
+        dependency-type: development
+      npm-production:
+        dependency-type: production
+    commit-message:
+      prefix: 'Deps'

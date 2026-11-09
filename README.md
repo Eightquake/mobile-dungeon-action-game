@@ -40,7 +40,19 @@ The project also has a hard rule of **zero cost**: free tools and non-expiring f
 
 ## Getting started
 
-*To be written once the language, build tooling and test framework ADRs are accepted.*
+You need Node.js 26 (see `.nvmrc`) and npm.
+
+```sh
+npm ci                     # install exactly the locked dependencies
+npm run dev                # dev server at http://localhost:5173
+npm run check              # type check, lint, formatting
+npm test                   # unit tests (Vitest)
+npx playwright install     # once: the test browsers
+npm run test:e2e           # end-to-end tests (Playwright) against the production build
+npm run build && npm run budget   # production build and its size budget
+```
+
+The full list, and the CI job each command runs in, is in [`docs/architecture/stack.md`](docs/architecture/stack.md).
 
 ## Contributing
 
