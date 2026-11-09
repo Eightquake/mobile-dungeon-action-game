@@ -28,7 +28,7 @@
 
 ## Alternative Flows
 
-### A1: Paused run exists
+### A1: Stored run exists
 
 **Trigger:** Player chooses to resume the stored run (step 5)  
 **Flow:**
@@ -70,6 +70,15 @@
 2. System tells the player what happened and offers to import a save export, as UC-011 Import Save describes, or to start with a new save.
 3. Player chooses to start with a new save.
 4. Use case continues at step 4.
+
+### A6: Player imports a save export
+
+**Trigger:** The device holds no readable save and the player chooses to import a save export instead of starting with a new save (step 3)  
+**Flow:**
+
+1. System keeps any damaged save data unchanged as a restorable copy and never overwrites it.
+2. System continues with UC-011 Import Save.
+3. Use case continues at step 4.
 
 ## Postconditions
 

@@ -8,55 +8,54 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (ADR-010 amended to use the Vercel Git integration; ADR amendment rule in CLAUDE.md)
+Last updated: 2026-11-09 by Claude Code (Elaboration finished: stack file, BP-001 process, pre-approval review of the walking skeleton, backlog as issues)
 
 ## Needs your decision
 
-- **One-time setup only you can do:** turn on branch protection on `main` (once the CI jobs of ADR-011 exist, make them required checks), plus Dependabot, CodeQL default setup, and secret scanning with push protection. The Vercel account, project and GitHub app are done, and no secrets are needed (ADR-010 as amended).
-- **Use case review:** UC-001, UC-002, UC-003, UC-004, UC-012 and UC-013 (the walking skeleton) are still `Draft`. Tell me when they're approved.
+- **Approve the walking skeleton use cases:** UC-001, UC-002, UC-003, UC-004, UC-012 and UC-013 passed a fresh spec review (lint clean, the review's warnings fixed in [#16](https://github.com/Eightquake/mobile-dungeon-action-game/pull/16)). Once #16 is merged, set them to `Approved` or tell me to. This is the gate from Elaboration to Construction.
+- **One-time repository setup:** branch protection, Dependabot, CodeQL, secret scanning ([#15](https://github.com/Eightquake/mobile-dungeon-action-game/issues/15)).
+- **Layer plugin:** install `aiup-playwright` for the E2E layer, or not? It's optional; see [#7](https://github.com/Eightquake/mobile-dungeon-action-game/pull/7).
 
 ## Ready for review
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#6](https://github.com/Eightquake/mobile-dungeon-action-game/pull/6) | none (ADRs) | ADR-010 and ADR-011 amended: Vercel's Git integration deploys, no secrets, branch protection gates production. CLAUDE.md: Accepted ADRs may be amended in place when you ask | Nothing to play. On the Vercel preview of this PR, expect a failed or empty build until there is a `package.json` |
+| [#7](https://github.com/Eightquake/mobile-dungeon-action-game/pull/7) | none | `docs/architecture/stack.md`: the ADRs mapped onto the AIUP layers. Check the four readings listed in the PR | Nothing to play |
+| [#18](https://github.com/Eightquake/mobile-dungeon-action-game/pull/18) | none | CI `spec-lint` job (ADR-011) with the AIUP lint scripts vendored in `tools/aiup/`. Passes. Make it a required check after merging (#15) | Nothing to play |
+| [#19](https://github.com/Eightquake/mobile-dungeon-action-game/pull/19) | none | `LICENSE` (AGPL-3.0) and the README License section with CC BY-SA 4.0 for assets (#3). Check the copyright line | Nothing to play |
+| [#17](https://github.com/Eightquake/mobile-dungeon-action-game/pull/17) | UC-001–005, 007, 008, 013 | BP-001 Dungeon Run: the run loop as a BPMN process, the last Elaboration artifact. One process only, and no per-path test cases (20 paths); say if you want more | Nothing to play |
+| [#16](https://github.com/Eightquake/mobile-dungeon-action-game/pull/16) | UC-001, 002, 003, 005, 011, 013 | Spec review fixes: "stored run" instead of "paused run" in UC-001; turning the phone to portrait pauses the run (UC-003 A6, OQ-027); UC-005 A2 also ends runs that can't be restored; import offered at launch (UC-013 A6) | Nothing to play |
 
 ## Questions
 
-Vision ambiguities. Each one has a working assumption in the specs and an entry in [open_questions.md](open_questions.md). Answer there or here.
+Each has a working assumption in the specs and an entry in [open_questions.md](open_questions.md). Answer there or here.
 
-- **No Android phone to measure on:** with the Galaxy S8 dropped, the iPhone 13 Pro is the only reference phone, so Chrome on Android (NFR-023) is covered only by Chromium tests in CI, not by a real phone. Add an Android phone later if Android performance matters. Also, the Vision says "ordinary mid-range phone"; a 2021 flagship is roughly that by now, but budgets measured on it may be generous for older Android phones.
-- **Ladder vs. no timers:** a "Greater Rift-style" ladder is usually timed, but the non-goals rule out timers. Assumed: no countdown, a tier clear records play time (OQ-002).
-- **Play reminder:** in-game only, or a system notification? Assumed: in-game, shown at the end-of-run summary (OQ-004).
-- **Default frame cap:** "smooth" and "kind to the device" pull in opposite directions (60 vs 30). Left as TODO in Performance.md until measured on the reference phone.
-- **Rested bonus:** the Vision's own open question. Not resolved, and nothing in the specs depends on it.
-- **One-time purchase:** the Vision allows it, but there's no store, the host must be free, and Vercel Hobby forbids commercial use (ADR-010). That's not needed now, but monetization would need its own decision.
-- **Decided while fixing the review (please confirm):** salvage yields nothing (OQ-023); abandoned runs don't count for bad-luck protection (OQ-024); a paused run can be finished after an update but is never sent to the leaderboard (OQ-025); 3 restorable copies are kept (OQ-026).
+- **New: portrait during a run** pauses it (OQ-027). Confirm?
+- **Ladder vs. no timers:** no countdown; a tier clear records play time (OQ-002).
+- **Play reminder:** in-game at the end-of-run summary, not a system notification (OQ-004).
+- **Default frame cap** 60 vs 30: decided by measurement ([#10](https://github.com/Eightquake/mobile-dungeon-action-game/issues/10)).
+- **Please confirm:** salvage yields nothing (OQ-023); abandoned runs don't count for bad-luck protection (OQ-024); a paused run can be finished after an update but is never sent to the leaderboard (OQ-025); 3 restorable copies (OQ-026).
 - **Numbers to confirm:** 5 s to run, 4% battery, 5 MB precache, max 6 gear slots, readable-number limits (OQ-006 to OQ-011, OQ-013).
-- **Answered 2026-11-09 and now in the specs:** sacrifice to unlock codex powers, with waiting legendaries that never expire (OQ-001, [UC-007](use_cases/UC-007-sacrifice-legendary.md)); 100 ms responsiveness, low-priority check (OQ-005); landscape with the stick under the left thumb and skill buttons under the right (OQ-012); iPhone 13 Pro as the reference phone (OQ-014; the Galaxy S8 was dropped because its browser is frozen at Chrome 138).
+- **Android:** only Chromium in CI covers NFR-023; no real Android phone. **Rested bonus** and **one-time purchase** stay open in the Vision.
+- C-005 to C-012 (the non-goals) are linked by no ADR. That's on purpose: they're product rules, not technical decisions.
 
 ## Blocked
 
-- Walking skeleton: waits for the use case review above.
-- UC-021 Restore Save from Cloud: blocked by OQ-022 (how the online identity reaches a new device), which belongs in the identity ADR.
+- Walking skeleton ([#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9)): waits for the approval above.
+- UC-017 to UC-022 (online features): wait for the backend ADR ([#11](https://github.com/Eightquake/mobile-dungeon-action-game/issues/11)); UC-021 also for the identity ADR ([#12](https://github.com/Eightquake/mobile-dungeon-action-game/issues/12), blocking OQ-022).
 
 ## Done since last check-in
 
-- Inception and elaboration specs and Proposed ADRs ([#2](https://github.com/Eightquake/mobile-dungeon-action-game/pull/2), merged).
-- ADR-006 to ADR-011 accepted, with Vercel Hobby as the host ([#5](https://github.com/Eightquake/mobile-dungeon-action-game/pull/5), merged).
-- License decided: AGPL-3.0-or-later for code, CC BY-SA 4.0 for art and sound. Adding the LICENSE file is issue [#3](https://github.com/Eightquake/mobile-dungeon-action-game/issues/3).
+- ADR-010 and ADR-011 amended for the Vercel Git integration ([#6](https://github.com/Eightquake/mobile-dungeon-action-game/pull/6), merged).
+- Backlog as issues: CI [#8](https://github.com/Eightquake/mobile-dungeon-action-game/issues/8), walking skeleton [#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9), phone measurements [#10](https://github.com/Eightquake/mobile-dungeon-action-game/issues/10), backend/identity/leaderboard ADRs [#11](https://github.com/Eightquake/mobile-dungeon-action-game/issues/11)–[#13](https://github.com/Eightquake/mobile-dungeon-action-game/issues/13), southpaw option [#14](https://github.com/Eightquake/mobile-dungeon-action-game/issues/14), owner setup [#15](https://github.com/Eightquake/mobile-dungeon-action-game/issues/15). Earlier: LICENSE [#3](https://github.com/Eightquake/mobile-dungeon-action-game/issues/3), license check [#4](https://github.com/Eightquake/mobile-dungeon-action-game/issues/4).
 
 ## Next up
 
-- **Stack file** `docs/architecture/stack.md` from ADR-006 to ADR-011, then CI (ADR-011) with the vendored spec lint.
-- **Walking skeleton**: an installable, offline-capable page where you can start a run, move, pause and resume. Use cases: [UC-012](use_cases/UC-012-install-game.md), [UC-013](use_cases/UC-013-launch-game-offline.md), [UC-001](use_cases/UC-001-start-run.md) (tier 1, no codex powers), [UC-002](use_cases/UC-002-clear-pack.md) (moving the hero only), [UC-003](use_cases/UC-003-pause-run.md), [UC-004](use_cases/UC-004-resume-run.md).
-- Then measure the reference phone and fill in the TODOs in [Performance.md](Performance.md) with the stress-test scene.
-- Later, as Proposed ADRs (not written yet, on purpose): backend provider, player identity, leaderboard verification.
-- Later idea from the owner: a southpaw option that mirrors the controls (stick right, skill buttons left). Needs a use case change (UC-015 settings) when it's picked up.
+- After approval: walking skeleton (#9) in four PRs, then the phone measurements (#10).
 
 ## Health
 
-- Specs: `spec_lint.py` 0 errors, 0 warnings, 13 infos (system-wide constraints not linked to a use case; UC-015 and UC-016 have no journey test case). Independent semantic review: all 21 warnings fixed. Infos left open on purpose: UC-007 reads like a subfunction of UC-002 (kept, since unlocking is its own player-visible goal), UC-016 spans two sittings, restoring an older restorable copy later has no use case yet, and UC-022 has no way out if the backend disappears for good.
-- CI: none yet (ADR-011 accepted, not built)
-- Performance budgets: not measured yet (all TODO)
+- Specs: `spec_lint.py --strict` 0 errors, 0 warnings, 13 infos (system-wide constraints; UC-015 and UC-016 in no test case). Infos from the review, left open: UC-002 A6 names step 2 but pausing works in every step (UC-003 BR-001); UC-003 BR-004 (checkpoints) is applied by no step of UC-003; "the effects" in UC-004 step 2 could mean visual effects, which are outside the simulation (ADR-008).
+- CI: `spec-lint` only, in [#18](https://github.com/Eightquake/mobile-dungeon-action-game/pull/18); the other five jobs come with the project setup (#8, #9)
+- Performance budgets: not measured yet (all TODO, #10)
 - Free-tier usage: OK, nothing deployed

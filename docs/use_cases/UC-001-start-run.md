@@ -27,12 +27,12 @@
 
 ## Alternative Flows
 
-### A1: Paused run exists
+### A1: Stored run exists
 
-**Trigger:** The save holds a paused run when the player chooses to play (step 1)  
+**Trigger:** The save holds a stored run, paused or left at its last checkpoint, when the player chooses to play (step 1)  
 **Flow:**
 
-1. System offers to resume the paused run or to abandon it.
+1. System offers to resume the stored run or to abandon it.
 2. Player chooses to resume.
 3. System continues with UC-004 Resume Run.
 4. Use case ends.
@@ -62,14 +62,14 @@
 1. System continues with UC-008 Equip Codex Powers.
 2. Use case continues at step 2.
 
-### A5: Player abandons the paused run
+### A5: Player abandons the stored run
 
-**Trigger:** Player chooses to abandon the paused run (step 1)  
+**Trigger:** Player chooses to abandon the stored run (step 1)  
 **Flow:**
 
-1. System asks the player to confirm that the paused run ends without a tier clear.
+1. System asks the player to confirm that the stored run ends without a tier clear.
 2. Player confirms.
-3. System continues with UC-005 Finish Run A2, which ends the paused run and shows its end-of-run summary.
+3. System continues with UC-005 Finish Run A2, which ends the stored run and shows its end-of-run summary.
 4. Use case ends.
 
 ### A6: Player backs out
@@ -89,14 +89,14 @@
 
 ### Failure Postconditions
 
-- An existing paused run is never discarded without the player's confirmation.
+- An existing stored run is never discarded without the player's confirmation.
 - No run is created.
 
 ## Business Rules
 
 ### BR-001: One run at a time
 
-The save holds at most one run, running or paused. A new run starts only after the paused run was resumed and finished, or abandoned with the player's confirmation.
+The save holds at most one stored run. A new run starts only after the stored run was resumed and finished, or abandoned with the player's confirmation.
 
 ### BR-002: Unlocked tiers only
 

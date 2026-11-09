@@ -6,7 +6,7 @@
 **Use Case Name:** Pause Run  
 **Primary Actor:** Player  
 **Goal:** The player stops the run at any moment and can leave the game without losing anything.  
-**Trigger:** Player presses the pause button, or the game is hidden because the player switches apps, locks the phone, or receives a call, or the browser takes away the game's graphics.  
+**Trigger:** Player presses the pause button, or the game is hidden because the player switches apps, locks the phone, or receives a call, or the browser takes away the game's graphics, or the player turns the phone to portrait orientation.  
 **Status:** Draft  
 
 **Requirements:** [FR-008, NFR-015, NFR-017, C-007, C-013, C-016](../requirements.md)  
@@ -70,6 +70,17 @@
 1. System keeps the run paused in memory and keeps the last stored state of the run.
 2. System tells the player that the pause could not be saved and that closing the game now loses the run's progress since the last stored state.
 3. Use case continues at step 4.
+
+### A6: Phone turned to portrait
+
+**Trigger:** The player turns the phone to portrait orientation instead of pressing pause (step 1)  
+**Flow:**
+
+1. System stops the simulation, the sounds, and the rendering, as in step 2.
+2. System stores the run state on the device as a paused run.
+3. System shows the prompt to rotate the phone to landscape, as UC-013 Launch Game Offline A4 describes.
+4. Player turns the phone back to landscape.
+5. Use case continues at step 4.
 
 ## Postconditions
 

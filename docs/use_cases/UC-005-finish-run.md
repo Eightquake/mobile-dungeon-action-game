@@ -41,7 +41,7 @@
 
 ### A2: Player abandons the run
 
-**Trigger:** Player confirms to abandon the run on the pause screen or on the title screen (step 1)  
+**Trigger:** Player confirms to abandon the run on the pause screen or when choosing to play, or the stored run cannot be restored or carried over to a new game version (UC-004 A2, UC-014 A3) (step 1)  
 **Flow:**
 
 1. System stops the simulation of the run and records no tier clear.
