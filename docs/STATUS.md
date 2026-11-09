@@ -21,6 +21,8 @@ Last updated: 2026-11-09 by Claude Code (Elaboration finished: stack file, BP-00
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
 | [#7](https://github.com/Eightquake/mobile-dungeon-action-game/pull/7) | none | `docs/architecture/stack.md`: the ADRs mapped onto the AIUP layers. Check the four readings listed in the PR | Nothing to play |
+| [#18](https://github.com/Eightquake/mobile-dungeon-action-game/pull/18) | none | CI `spec-lint` job (ADR-011) with the AIUP lint scripts vendored in `tools/aiup/`. Passes. Make it a required check after merging (#15) | Nothing to play |
+| [#19](https://github.com/Eightquake/mobile-dungeon-action-game/pull/19) | none | `LICENSE` (AGPL-3.0) and the README License section with CC BY-SA 4.0 for assets (#3). Check the copyright line | Nothing to play |
 | [#17](https://github.com/Eightquake/mobile-dungeon-action-game/pull/17) | UC-001–005, 007, 008, 013 | BP-001 Dungeon Run: the run loop as a BPMN process, the last Elaboration artifact. One process only, and no per-path test cases (20 paths); say if you want more | Nothing to play |
 | [#16](https://github.com/Eightquake/mobile-dungeon-action-game/pull/16) | UC-001, 002, 003, 005, 011, 013 | Spec review fixes: "stored run" instead of "paused run" in UC-001; turning the phone to portrait pauses the run (UC-003 A6, OQ-027); UC-005 A2 also ends runs that can't be restored; import offered at launch (UC-013 A6) | Nothing to play |
 
@@ -49,12 +51,11 @@ Each has a working assumption in the specs and an entry in [open_questions.md](o
 
 ## Next up
 
-- CI `spec-lint` job with the vendored lint (#8), which doesn't need `package.json`; the LICENSE file (#3).
 - After approval: walking skeleton (#9) in four PRs, then the phone measurements (#10).
 
 ## Health
 
 - Specs: `spec_lint.py --strict` 0 errors, 0 warnings, 13 infos (system-wide constraints; UC-015 and UC-016 in no test case). Infos from the review, left open: UC-002 A6 names step 2 but pausing works in every step (UC-003 BR-001); UC-003 BR-004 (checkpoints) is applied by no step of UC-003; "the effects" in UC-004 step 2 could mean visual effects, which are outside the simulation (ADR-008).
-- CI: none yet (#8)
+- CI: `spec-lint` only, in [#18](https://github.com/Eightquake/mobile-dungeon-action-game/pull/18); the other five jobs come with the project setup (#8, #9)
 - Performance budgets: not measured yet (all TODO, #10)
 - Free-tier usage: OK, nothing deployed
