@@ -1,7 +1,7 @@
 # ADR-008: Deterministic fixed-timestep simulation
 
-**Status:** Proposed  
-**Date:** 2026-11-08  
+**Status:** Accepted  
+**Date:** 2026-11-09  
 **Requirements:** NFR-001, NFR-007, NFR-017, NFR-022, C-003, C-024
 
 ## Context
@@ -28,7 +28,7 @@ JavaScriptCore, and SpiderMonkey may differ in the last bits, and a replay can d
 
 ## Decision
 
-Recommended: **Option A.**
+Decided: **Option A.**
 
 - **Separation.** The simulation (`src/sim/`) is a pure module: state in, inputs in, state out. No DOM, no rendering,
   no audio, no network, no wall-clock, no `Math.random`. It runs headless in Node for tests.

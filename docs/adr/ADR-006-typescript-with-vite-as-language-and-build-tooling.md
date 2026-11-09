@@ -1,7 +1,7 @@
 # ADR-006: TypeScript with Vite as language and build tooling
 
-**Status:** Proposed  
-**Date:** 2026-11-08  
+**Status:** Accepted  
+**Date:** 2026-11-09  
 **Requirements:** C-001, C-015, C-024, NFR-016, NFR-022, NFR-023
 
 ## Context
@@ -32,7 +32,7 @@ Construction needs a language and a build before the first line of game code. Th
 
 ## Decision
 
-Recommended: **Option A.**
+Decided: **Option A.**
 
 - TypeScript with `strict` on, ES modules, target the browsers of NFR-023.
 - Vite for the dev server and the production build; npm with a committed `package-lock.json` and `npm ci` in CI; the
