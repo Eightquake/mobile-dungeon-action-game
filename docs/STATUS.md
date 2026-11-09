@@ -8,19 +8,19 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (ADR-006 to ADR-011 accepted, hosting moved to Vercel Hobby)
+Last updated: 2026-11-09 by Claude Code (ADR-010 amended to use the Vercel Git integration; ADR amendment rule in CLAUDE.md)
 
 ## Needs your decision
 
-- **Review [ADR-010](adr/ADR-010-vercel-hobby-as-static-host.md) (Vercel Hobby).** You chose Vercel, and I filled in how it works: deploys run from GitHub Actions with the Vercel CLI (Vercel's own Git builds are switched off), so production only goes out after CI passes. I also added a **preview deployment per PR** so you can play a PR on the phone before merging. Strike the preview job if you don't want it.
-- **One-time setup only you can do** (before the first deploy): create the Vercel Hobby account and project, create a token, and add `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` as GitHub Actions secrets. For ADR-011: turn on branch protection, Dependabot, CodeQL default setup, and secret scanning with push protection.
+- **One-time setup only you can do:** turn on branch protection on `main` (once the CI jobs of ADR-011 exist, make them required checks), plus Dependabot, CodeQL default setup, and secret scanning with push protection. The Vercel account, project and GitHub app are done, and no secrets are needed (ADR-010 as amended).
 - **Use case review:** UC-001, UC-002, UC-003, UC-004, UC-012 and UC-013 (the walking skeleton) are still `Draft`. Tell me when they're approved.
+- **ADR-011 wording:** it still says "The deploy job of ADR-010 runs only on `main` after all jobs pass". With the Git integration there is no deploy job, so production is gated by branch protection instead (explained in ADR-010). Say if you want ADR-011 amended to match.
 
 ## Ready for review
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#5](https://github.com/Eightquake/mobile-dungeon-action-game/pull/5) | none (ADRs) | ADR-006, 007, 008, 009 and 011 set to Accepted. ADR-010 rewritten for Vercel Hobby and accepted (file renamed) | Nothing to play. Read ADR-010 |
+| this PR | none (ADRs) | ADR-010 amended: Vercel's Git integration deploys, no secrets. CLAUDE.md: Accepted ADRs may be amended in place when you ask | Nothing to play. On the Vercel preview of this PR, expect a failed or empty build until there is a `package.json` |
 
 ## Questions
 
@@ -38,13 +38,13 @@ Vision ambiguities. Each one has a working assumption in the specs and an entry 
 
 ## Blocked
 
-- Walking skeleton: waits for the use case review above. The first deploy waits for the Vercel secrets.
+- Walking skeleton: waits for the use case review above.
 - UC-021 Restore Save from Cloud: blocked by OQ-022 (how the online identity reaches a new device), which belongs in the identity ADR.
 
 ## Done since last check-in
 
 - Inception and elaboration specs and Proposed ADRs ([#2](https://github.com/Eightquake/mobile-dungeon-action-game/pull/2), merged).
-- ADR-006 to ADR-011 accepted, with Vercel Hobby as the host.
+- ADR-006 to ADR-011 accepted, with Vercel Hobby as the host ([#5](https://github.com/Eightquake/mobile-dungeon-action-game/pull/5), merged).
 - License decided: AGPL-3.0-or-later for code, CC BY-SA 4.0 for art and sound. Adding the LICENSE file is issue [#3](https://github.com/Eightquake/mobile-dungeon-action-game/issues/3).
 
 ## Next up

@@ -37,7 +37,7 @@ Never violate these without the owner's explicit approval:
 
 - Construction follows **Accepted** ADRs only.
 - Agents may write ADRs with status **Proposed**, including options and a recommendation. Only the owner accepts or rejects them.
-- Write and change ADRs with `/architecture-decision`. Every ADR links the NFR and constraint ids it serves in its `**Requirements:**` line. Never rewrite the Context, Decision, or Consequences of an Accepted ADR; supersede it with a new one.
+- Write and change ADRs with `/architecture-decision`. Every ADR links the NFR and constraint ids it serves in its `**Requirements:**` line. Never rewrite the Context, Decision, or Consequences of an Accepted ADR on your own; supersede it with a new one. When the owner explicitly asks, an Accepted ADR may be amended in place: set `**Date:**` to the amendment date and add an `**Amended:**` line saying what changed and why. This overrides the `/architecture-decision` skill's rule against rewriting Accepted ADRs.
 - Work that depends on a Proposed ADR waits. Continue with independent work instead.
 - Never resolve an open question from the Vision. Record it in `docs/STATUS.md`.
 
