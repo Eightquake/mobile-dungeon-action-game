@@ -2,7 +2,7 @@
 
 **Status:** Accepted  
 **Date:** 2026-11-08  
-**Requirements:** _pending: linked once docs/requirements.md exists_
+**Requirements:** C-003, C-015, NFR-016, NFR-021, FR-022
 
 ## Context
 
