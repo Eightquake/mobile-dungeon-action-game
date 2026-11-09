@@ -19,7 +19,7 @@ Last updated: 2026-11-09 by Claude Code (walking skeleton 2 of 4: blocked on ADR
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [ADR-015 PR](https://github.com/Eightquake/mobile-dungeon-action-game/pulls) | none (blocks #9 PR 2) | Proposed ADR-015 | Nothing to play |
+| [#45](https://github.com/Eightquake/mobile-dungeon-action-game/pull/45) | none (blocks #9 PR 2) | Proposed ADR-015 | Nothing to play |
 
 ## Questions
 
