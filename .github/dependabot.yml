@@ -15,6 +15,14 @@ updates:
     schedule:
       interval: weekly
     groups:
+      # TypeScript and typescript-eslint move together: typescript-eslint pins a TypeScript peer range,
+      # so a TypeScript major waits in this group's PR until a typescript-eslint release supports it.
+      # Listed first because a dependency joins the first group it matches.
+      typescript:
+        patterns:
+          - 'typescript'
+          - 'typescript-eslint'
+          - '@typescript-eslint/*'
       npm-development:
         dependency-type: development
       npm-production:
