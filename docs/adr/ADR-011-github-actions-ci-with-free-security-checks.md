@@ -1,7 +1,7 @@
 # ADR-011: GitHub Actions CI with free security checks
 
-**Status:** Proposed  
-**Date:** 2026-11-08  
+**Status:** Accepted  
+**Date:** 2026-11-09  
 **Requirements:** C-001, C-023, C-027, C-028, NFR-016, NFR-019, NFR-020, NFR-022
 
 ## Context
@@ -32,7 +32,7 @@ quota runs out.
 
 ## Decision
 
-Recommended: **GitHub Actions with these jobs, all required for merging into `main`:**
+Decided: **GitHub Actions with these jobs, all required for merging into `main`:**
 
 1. **check** — `npm ci`, `tsc --noEmit`, ESLint (with the simulation rules), Prettier check.
 2. **unit** — Vitest, including migrations, import fuzzing, and the Node determinism replays (NFR-019, NFR-020,

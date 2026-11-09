@@ -1,6 +1,6 @@
 # ADR-007: Three.js with a fixed tilted camera as renderer
 
-**Status:** Proposed  
+**Status:** Accepted  
 **Date:** 2026-11-09  
 **Requirements:** C-001, NFR-007, NFR-008, NFR-014, NFR-015, NFR-016, NFR-023
 
@@ -39,7 +39,7 @@ keeps the game rules the same as in a top-down 2D game: height is only visual.
 
 ## Decision
 
-Recommended: **Option A, Three.js with `WebGLRenderer`**, the version pinned in `package.json`.
+Decided: **Option A, Three.js with `WebGLRenderer`**, the version pinned in `package.json`.
 
 - **Camera:** one `PerspectiveCamera` with a narrow field of view, tilted down at a fixed angle and following the
   hero at a fixed distance. Angle, distance, and field of view are tuning data. The camera never rotates, so

@@ -1,7 +1,7 @@
 # ADR-009: Vitest and Playwright as test frameworks
 
-**Status:** Proposed  
-**Date:** 2026-11-08  
+**Status:** Accepted  
+**Date:** 2026-11-09  
 **Requirements:** C-001, C-014, C-017, NFR-019, NFR-020, NFR-021, NFR-022
 
 ## Context
@@ -26,7 +26,7 @@ two versions of the game served one after the other.
 
 ## Decision
 
-Recommended:
+Decided:
 
 - **Vitest** for unit tests of the simulation, save, migrations, and tuning-data schemas; **fast-check** for
   property tests; **fake-indexeddb** for storage in unit tests.
