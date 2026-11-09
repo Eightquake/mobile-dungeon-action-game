@@ -61,7 +61,7 @@
 **Trigger:** The hero collects a legendary (step 9)  
 **Flow:**
 
-1. System continues with UC-007 Unlock Codex Power.
+1. System adds the legendary to the found items of the run and shows a short notice with its name and legendary power, marked as new when the power is neither in the codex, nor carried by a waiting legendary, nor carried by a legendary found earlier in the run, without pausing the run and without covering the hero or the skill buttons.
 2. Use case continues at step 9 for the remaining dropped items.
 
 ### A5: Guardian defeated

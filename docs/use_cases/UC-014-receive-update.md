@@ -51,8 +51,8 @@
 **Trigger:** The stored run in the save cannot be migrated to the new save format version (step 7)  
 **Flow:**
 
-1. System migrates the codex, the ladder progress, and the settings, and keeps the stored run's data in a restorable copy of the save.
-2. System tells the player that the paused run could not be carried over and ends it without a tier clear, as UC-005 Finish Run A2 describes; codex powers unlocked in it stay in the codex.
+1. System migrates the codex, the waiting legendaries, the ladder progress, and the settings, and keeps the stored run's data in a restorable copy of the save.
+2. System tells the player that the paused run could not be carried over and ends it without a tier clear, as UC-005 Finish Run A2 describes; new legendaries that can still be read from the stored run become waiting legendaries, and the rest stay in the restorable copy.
 3. Use case continues at step 8.
 
 ### A4: Save migration fails
@@ -76,12 +76,12 @@
 
 ### Success Postconditions
 
-- The new version runs, and the save is in its save format version, with every codex power, tier clear, and setting it had before.
+- The new version runs, and the save is in its save format version, with every codex power, waiting legendary, tier clear, and setting it had before.
 
 ### Failure Postconditions
 
 - No run is ever interrupted by an update.
-- No codex power, tier clear, or setting is lost; a save that cannot be migrated stays on the device unchanged.
+- No codex power, waiting legendary, tier clear, or setting is lost; a save that cannot be migrated stays on the device unchanged.
 
 ## Business Rules
 

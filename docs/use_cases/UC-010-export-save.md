@@ -64,7 +64,7 @@
 
 ### BR-001: Whole save
 
-A save export contains the whole save — codex, ladder progress, equipped codex powers, settings, bad-luck protection, and a stored run, if any — but no restorable copy and no online identity.
+A save export contains the whole save — codex, waiting legendaries, ladder progress, equipped codex powers, settings, bad-luck protection, and a stored run, if any — but no restorable copy and no online identity.
 
 ### BR-002: Works offline
 

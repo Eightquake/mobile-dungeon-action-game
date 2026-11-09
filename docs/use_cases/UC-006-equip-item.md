@@ -83,7 +83,7 @@ Every gear slot holds at most one item, and the hero has at most 6 gear slots (C
 
 ### BR-003: Leftovers are salvaged
 
-Every item of a run, equipped or not, is salvaged automatically when the run ends, as UC-005 Finish Run describes (FR-007).
+Every item of a run, equipped or not, is salvaged automatically when the run ends, except a legendary that becomes a waiting legendary, as UC-005 Finish Run describes (FR-007).
 
 ### BR-004: Effects described in skill terms
 

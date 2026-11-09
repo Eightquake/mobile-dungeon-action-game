@@ -9,10 +9,14 @@ history.
 **Element:** FR-013
 **Raised by:** /requirements, 2026-11-08
 **Blocking:** No
-**Status:** Open
+**Status:** Resolved
 **Assumed:** (a) The power unlocks automatically when the hero picks up a legendary whose power is not in the codex yet.
 
 The Vision says no drop is wasted and asks for minimal inventory management, but does not say whether unlocking needs a player action (such as sacrificing the item between runs). Readings: (a) automatic on pickup, listed in the end-of-run summary; (b) the player extracts the power from the item between runs.
+
+**Answer:** (b) A sacrifice is made. A legendary whose power is not in the codex yet is kept after its run as a waiting legendary; the player sacrifices it on the end-of-run summary or later in the codex, which adds its power to the codex. Waiting legendaries never expire, so no drop is lost.
+**Answered by:** Owner, 2026-11-09
+**Resolved in:** FR-013, UC-007, UC-005 step 4, UC-002 A4, Glossary: Waiting Legendary, Entity: WAITING_LEGENDARY
 
 ## OQ-002: Is a tier of the challenge ladder cleared by defeating its guardian, without a countdown?
 
@@ -49,10 +53,14 @@ The Vision allows at most an opt-in, player-set reminder that never locks or pen
 **Element:** NFR-001
 **Raised by:** /requirements, 2026-11-08
 **Blocking:** No
-**Status:** Open
+**Status:** Resolved
 **Assumed:** 100 ms in 9 of 10 attempts, measured with a 240 fps camera on the reference phone.
 
 The Vision asks for responsive controls without a number. 100 ms is a common limit for an action to feel instant.
+
+**Answer:** Keep 100 ms. The slow-motion check can use an iPhone 16 Pro Max at 240 fps, but it is not a priority to run.
+**Answered by:** Owner, 2026-11-09
+**Resolved in:** NFR-001
 
 ## OQ-006: Is an owner rating of 4 out of 5 over 3 playtest runs an acceptable check for hit weight and fun?
 
@@ -119,10 +127,14 @@ ADR-002 says the precache must stay small, without a number.
 **Element:** NFR-024
 **Raised by:** /requirements, 2026-11-08
 **Blocking:** No
-**Status:** Open
+**Status:** Resolved
 **Assumed:** Landscape, with a rotate prompt in portrait.
 
 The Vision asks for a virtual stick plus 3 to 4 skill buttons but names no orientation. Two-thumb controls suit landscape; one-handed play on a bus suits portrait. The answer changes the layout of every in-run screen.
+
+**Answer:** Landscape, with the movement stick for one thumb and the skill buttons on the other side of the screen for the other thumb.
+**Answered by:** Owner, 2026-11-09
+**Resolved in:** NFR-024
 
 ## OQ-013: Is 6 the right maximum number of gear slots?
 
@@ -139,10 +151,14 @@ The Vision asks for few gear slots without a number.
 **Element:** Glossary: Reference Phone
 **Raised by:** /requirements, 2026-11-08
 **Blocking:** No
-**Status:** Open
+**Status:** Resolved
 **Assumed:** A mid-range Android phone that the owner owns, plus one iPhone for Safari checks; named in Performance.md once chosen.
 
 The Vision says an ordinary mid-range phone. Every performance threshold depends on the device; the owner has to have it at hand to measure.
+
+**Answer:** Two reference phones: an iPhone 13 Pro and a Samsung Galaxy S8.
+**Answered by:** Owner, 2026-11-09
+**Resolved in:** Glossary: Reference Phone, NFR-023
 
 ## OQ-015: Do equipped items carry over from one run to the next?
 
@@ -229,7 +245,7 @@ UC-021 needs the online identity that stored the cloud save, but how a player ca
 **Raised by:** /spec-review fix, 2026-11-08
 **Blocking:** No
 **Status:** Open
-**Assumed:** Salvage yields nothing. Items belong to one run, and a legendary's power is already in the codex when the item is salvaged.
+**Assumed:** Salvage yields nothing. Items belong to one run, and a legendary whose power is not in the codex yet is kept as a waiting legendary instead of being salvaged (UC-007 BR-003).
 
 The Vision asks for auto-salvage but names no salvage reward, and no use case would spend one. A reward would need a currency, which adds menu time between runs.
 

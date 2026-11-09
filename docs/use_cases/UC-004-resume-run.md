@@ -42,7 +42,7 @@
 
 1. System tells the player that the stored run could not be restored and why.
 2. System keeps the stored run's data in a restorable copy of the save.
-3. System continues with UC-005 Finish Run A2, which ends the run without a tier clear; codex powers unlocked in it stay in the codex.
+3. System continues with UC-005 Finish Run A2, which ends the run without a tier clear; new legendaries that can still be read from the stored run become waiting legendaries, and the rest stay in the restorable copy.
 4. Use case ends.
 
 ### A3: Game closed after the last checkpoint

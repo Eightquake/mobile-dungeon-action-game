@@ -9,7 +9,7 @@
 **Trigger:** Player chooses to open the codex on the title screen, on the end-of-run summary, or on the tier choice of UC-001 Start Run.  
 **Status:** Draft  
 
-**Requirements:** [FR-014, NFR-011, NFR-013, NFR-018](../requirements.md)  
+**Requirements:** [FR-013, FR-014, NFR-011, NFR-013, NFR-018](../requirements.md)  
 **Priority:** High
 
 ## Preconditions
@@ -19,7 +19,7 @@
 ## Main Success Scenario
 
 1. Player opens the codex.
-2. System shows the codex slots with the codex power equipped in each, and the list of unlocked codex powers, each with the skill it changes and how.
+2. System shows the codex slots with the codex power equipped in each, the list of unlocked codex powers, each with the skill it changes and how, and the waiting legendaries, which the player can sacrifice as UC-007 Sacrifice Legendary describes.
 3. Player selects a codex slot and a codex power for it.
 4. System equips the codex power into the codex slot and stores the change on the device.
 5. Player closes the codex.
@@ -32,7 +32,7 @@
 **Trigger:** The player has not unlocked any codex power yet (step 2)  
 **Flow:**
 
-1. System shows the empty codex slots and explains that legendaries found in runs unlock codex powers.
+1. System shows the empty codex slots and any waiting legendaries, and explains that sacrificing a legendary found in a run unlocks its codex power.
 2. Use case ends.
 
 ### A2: Codex power equipped in another slot

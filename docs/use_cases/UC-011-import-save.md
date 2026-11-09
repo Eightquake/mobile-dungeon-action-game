@@ -21,8 +21,8 @@
 1. Player chooses to import a save.
 2. System asks for a save export as a file or as a pasted code.
 3. Player selects a file.
-4. System checks that the save export is complete and well-formed, that every value lies within the ranges of the entity model and names existing content, and that its save format version is one the game can read.
-5. System shows the save export next to the current save: the number of codex powers and the highest cleared tier of each, and the export date of the save export.
+4. System checks that the save export is complete and well-formed, that every value lies within the ranges of the entity model and names existing content, that no waiting legendary carries a legendary power that is in its codex or carried by another waiting legendary, and that its save format version is one the game can read.
+5. System shows the save export next to the current save: the number of codex powers, the number of waiting legendaries, and the highest cleared tier of each, and the export date of the save export.
 6. Player confirms to replace the current save.
 7. System keeps the current save as a restorable copy, migrates the save export to the current save format version, and stores it as the save.
 8. System shows the title screen with the imported progress.

@@ -23,7 +23,9 @@ One name per concept. Requirements, use cases, test cases, and code use these te
 | Codex                  | The player's permanent collection of unlocked legendary powers, kept across all runs.                                                                       | Cube                |
 | Codex Power            | A legendary power that is unlocked in the codex and can be equipped into a codex slot.                                                                      |                     |
 | Codex Slot             | One of the places that holds a codex power the hero carries into a run.                                                                                     |                     |
-| Salvage                | Removing the items of a run when it ends, without a menu; nothing is lost, because a legendary's power is already in the codex.                            |                     |
+| Waiting Legendary      | A legendary kept in the save after its run ended because its legendary power is not in the codex yet; it waits until the player sacrifices it.              |                     |
+| Sacrifice              | Destroying a waiting legendary by the player's choice to add its legendary power to the codex for good.                                                     | Extract             |
+| Salvage                | Removing the items of a run when it ends, without a menu, except the legendaries that become waiting legendaries; salvage yields nothing.                   |                     |
 | Bad-Luck Protection    | The rule that raises the chance of a legendary drop after every run that ended without one.                                                                 | Pity timer          |
 | Challenge Ladder       | The ordered list of tiers that tests build quality and player skill.                                                                                        | Greater Rift, Rift  |
 | Tier                   | One step of the challenge ladder with a fixed difficulty.                                                                                                   | Difficulty level    |
@@ -35,7 +37,7 @@ One name per concept. Requirements, use cases, test cases, and code use these te
 | Paused Run             | A run whose simulation is stopped and whose state is stored on the device, so it can be resumed later, also after the game was closed.                    | Suspended run       |
 | Stored Run             | The state of the one unfinished run kept on the device: a paused run, or the last checkpoint of a run whose game was closed without a pause.              |                     |
 | Checkpoint             | A copy of a running run's state that the game stores at most 10 seconds of play apart.                                                                     |                     |
-| Save                   | All of the player's progress stored on the device: codex, ladder progress, equipped codex powers, settings, bad-luck protection, and a stored run, if any. | Savegame            |
+| Save                   | All of the player's progress stored on the device: codex, waiting legendaries, ladder progress, equipped codex powers, settings, bad-luck protection, and a stored run, if any. | Savegame            |
 | Save Export            | A copy of the save as a file or a copyable code that the player can keep or import elsewhere.                                                               | Backup file         |
 | Restorable Copy        | A save that an import, a cloud restore, or a failed migration replaced, kept on the device so the player can go back to it.                              |                     |
 | Save Format Version    | The number that identifies the structure of a save, raised with every change of that structure.                                                            |                     |
@@ -44,7 +46,7 @@ One name per concept. Requirements, use cases, test cases, and code use these te
 | Seed                   | The number from which all randomness of a run is derived, so that the same seed and inputs produce the same run.                                          |                     |
 | Input Log              | The recorded player inputs of a run per simulation step, used to replay the run.                                                                           | Replay file         |
 | Frame Cap              | The highest number of frames per second the game renders.                                                                                                   | FPS limit           |
-| Reference Phone        | The ordinary mid-range phone on which every performance and battery threshold is measured.                                                                  | Test device         |
+| Reference Phone        | Each of the two phones on which every performance and battery threshold is measured: an iPhone 13 Pro and a Samsung Galaxy S8. A threshold holds only when it holds on both. | Test device         |
 | Stress-Test Scene      | A scripted scene that fills the screen up to every effect budget, used to measure frame pacing.                                                             | Benchmark level     |
 | Effect Budget          | The highest allowed number of live enemies, projectiles, or visual effects at one time.                                                                    |                     |
 | Tuning Data            | The data files that hold combat and balance values, such as damage, drop chances, and hit-stop durations.                                                  |                     |

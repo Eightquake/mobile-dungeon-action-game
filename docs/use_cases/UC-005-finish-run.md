@@ -5,11 +5,11 @@
 **Use Case ID:** UC-005  
 **Use Case Name:** Finish Run  
 **Primary Actor:** Player  
-**Goal:** The player ends a run and sees a clear end-of-run summary of what they found, unlocked, and how far they climbed, at a natural place to stop.  
+**Goal:** The player ends a run and sees a clear end-of-run summary of what they found, which legendaries they can sacrifice, and how far they climbed, at a natural place to stop.  
 **Trigger:** The hero defeats the guardian of the tier, the hero dies, or the player abandons the run.  
 **Status:** Draft  
 
-**Requirements:** [FR-007, FR-010, FR-011, FR-012, FR-016, FR-018, NFR-010, NFR-011, NFR-018, C-007, C-013, C-014](../requirements.md)  
+**Requirements:** [FR-007, FR-010, FR-011, FR-012, FR-013, FR-016, FR-018, NFR-010, NFR-011, NFR-018, C-007, C-013, C-014](../requirements.md)  
 **Priority:** High
 
 ## Preconditions
@@ -21,12 +21,12 @@
 1. The hero defeats the guardian of the tier.
 2. System stops the simulation of the run.
 3. System records a tier clear for the tier with the run's play time and the codex powers the run started with, and unlocks the next tier when this is the first clear of the tier.
-4. System salvages every found item, equipped or not, since items belong to one run.
+4. System keeps every found legendary whose legendary power is neither in the codex nor carried by a waiting legendary as a waiting legendary, at most one per legendary power (UC-007 BR-003), and salvages every other found item, equipped or not, since items belong to one run.
 5. System updates the bad-luck protection: it resets the legendary drop chance when a legendary dropped in the run, and raises it otherwise; an abandoned run leaves it unchanged.
-6. System stores the codex, the ladder progress, and the bad-luck protection on the device and deletes the stored run.
-7. System shows the end-of-run summary: the tier result, the play time, the items found, the codex powers unlocked, and the highest tier cleared, with every new codex power and a newly unlocked tier marked as new.
-8. Player chooses to play the next run, to open the codex, to view the challenge ladder, or to go to the title screen.
-9. System shows the screen the player chose, or continues with UC-001 Start Run, UC-008 Equip Codex Powers, or UC-009 View Challenge Ladder.
+6. System stores the waiting legendaries, the ladder progress, and the bad-luck protection on the device and deletes the stored run.
+7. System shows the end-of-run summary: the tier result, the play time, the items found, the new waiting legendaries with the choice to sacrifice them, and the highest tier cleared, with every new waiting legendary and a newly unlocked tier marked as new.
+8. Player chooses to play the next run, to sacrifice a waiting legendary, to open the codex, to view the challenge ladder, or to go to the title screen.
+9. System shows the screen the player chose, or continues with UC-001 Start Run, UC-007 Sacrifice Legendary, UC-008 Equip Codex Powers, or UC-009 View Challenge Ladder.
 
 ## Alternative Flows
 
@@ -69,7 +69,7 @@
 **Trigger:** The device refuses to store the result, for example because storage is full (step 6)  
 **Flow:**
 
-1. System keeps the result in memory and tells the player that the result could not be saved and how to free storage.
+1. System keeps the result in memory and tells the player that the result could not be saved and how to free storage; the new waiting legendaries are shown but can be sacrificed only once the result is stored.
 2. System retries storing when the player leaves the summary.
 3. Use case continues at step 7.
 
@@ -96,12 +96,12 @@
 
 - The run is over and no longer stored on the device.
 - When the guardian was defeated, the tier clear is recorded with its play time, and the tier above the highest cleared tier is unlocked.
-- Every found item is salvaged.
+- Every found item is salvaged or kept as a waiting legendary.
 - The end-of-run summary is shown, and no new run has started without the player choosing it.
 
 ### Failure Postconditions
 
-- No codex power, tier clear, or setting that existed before the run is lost or changed for the worse.
+- No codex power, waiting legendary, tier clear, or setting that existed before the run is lost or changed for the worse.
 
 ## Business Rules
 
@@ -111,7 +111,7 @@ The next run starts only when the player chooses it. The end-of-run summary has 
 
 ### BR-002: Death keeps the finds
 
-A run that ends with the hero's death or an abandon keeps every codex power unlocked during the run.
+A run that ends with the hero's death or an abandon keeps its new legendaries as waiting legendaries, like a run with a tier clear (UC-007 BR-003).
 
 ### BR-003: Equipped items do not carry over
 

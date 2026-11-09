@@ -19,6 +19,9 @@ erDiagram
     LEGENDARY_POWER ||--o{ ITEM_DEFINITION : "is carried by"
     SAVE ||--o{ CODEX_ENTRY : "holds"
     LEGENDARY_POWER ||--o{ CODEX_ENTRY : "is unlocked as"
+    SAVE ||--o{ WAITING_LEGENDARY : "keeps"
+    ITEM_DEFINITION ||--o{ WAITING_LEGENDARY : "defines"
+    LADDER_TIER ||--o{ WAITING_LEGENDARY : "was found in"
     SAVE ||--o{ CODEX_SLOT : "has"
     CODEX_ENTRY |o--o{ CODEX_SLOT : "is equipped in"
     SAVE ||--o{ TIER_CLEAR : "records"
@@ -100,20 +103,41 @@ All of the player's progress stored on the device; exactly one exists per device
 
 ### CODEX_ENTRY
 
-A codex power: a legendary power unlocked in the codex for good.
+A codex power: a legendary power unlocked in the codex for good by sacrificing a legendary (UC-007).
 
 | Attribute          | Description                                   | Data Type | Length/Precision | Validation Rules                           |
 |--------------------|-----------------------------------------------|-----------|------------------|--------------------------------------------|
 | id                 | Unique identifier                             | Long      | 19               | Primary Key, Sequence                      |
 | save_id            | Save the codex belongs to                     | Long      | 19               | Not Null, Foreign Key (SAVE.id)            |
 | legendary_power_id | Legendary power that is unlocked              | String    | 50               | Not Null, Foreign Key (LEGENDARY_POWER.id) |
-| unlocked_at        | When the power was unlocked                   | DateTime  | -                | Not Null                                   |
-| unlocked_in_tier   | Tier of the run in which the power was unlocked | Integer | 10               | Not Null, Min: 1, Max: 9999                |
+| unlocked_at        | When the legendary was sacrificed             | DateTime  | -                | Not Null                                   |
+| unlocked_in_tier   | Tier of the run in which the sacrificed legendary was found | Integer | 10               | Not Null, Min: 1, Max: 9999                |
 
 #### Constraints
 
 - A legendary power is unlocked at most once per save (save_id, legendary_power_id are unique together).
 - A codex entry is never deleted, except when an import or a cloud restore replaces the whole save.
+- A codex entry is created in the same storage transaction that deletes the sacrificed WAITING_LEGENDARY.
+
+### WAITING_LEGENDARY
+
+A legendary kept after its run ended because its legendary power is not in the codex yet; it waits until the player
+sacrifices it (UC-007 BR-003, BR-004).
+
+| Attribute          | Description                                        | Data Type | Length/Precision | Validation Rules                           |
+|--------------------|----------------------------------------------------|-----------|------------------|--------------------------------------------|
+| id                 | Unique identifier                                  | Long      | 19               | Primary Key, Sequence                      |
+| save_id            | Save the waiting legendary belongs to              | Long      | 19               | Not Null, Foreign Key (SAVE.id)            |
+| item_definition_id | The legendary item                                 | String    | 50               | Not Null, Foreign Key (ITEM_DEFINITION.id) |
+| found_at           | When the run that found it ended                   | DateTime  | -                | Not Null                                   |
+| found_in_tier      | Tier of the run in which it was found              | Integer   | 10               | Not Null, Foreign Key (LADDER_TIER.id)     |
+
+#### Constraints
+
+- The item definition is a legendary (ITEM_DEFINITION.legendary_power_id is set).
+- At most one waiting legendary per legendary power per save, and none whose legendary power is already in the codex.
+- A waiting legendary never expires; it is deleted only by a sacrifice, or when an import or a cloud restore replaces
+  the whole save.
 
 ### CODEX_SLOT
 

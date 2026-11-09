@@ -1,7 +1,7 @@
 # Performance Guidelines
 
 A living document. Every change follows it (C-027); a change that breaks a budget here is not done. Numbers marked
-**TODO** are filled in from measurements on the reference phone, never guessed. When a number is measured, write it
+**TODO** are filled in from measurements on the reference phones, never guessed. When a number is measured, write it
 here with the date and the build it was measured on.
 
 Each guideline names the Vision principle it serves:
@@ -15,15 +15,20 @@ Related requirements: NFR-007 (frame pacing), NFR-008 (effect budget), NFR-014 (
 background), NFR-016 (first load size), NFR-001 to NFR-006 (combat feel). Related decisions: ADR-007 (renderer),
 ADR-008 (simulation).
 
-## 1. Reference phone — Smooth, Kind
+## 1. Reference phones — Smooth, Kind
 
-All thresholds are measured on one real phone, not on a desktop browser or an emulator.
+All thresholds are measured on two real phones, not on a desktop browser or an emulator.
 
 | Item                          | Value |
 |-------------------------------|-------|
-| Reference phone (Android)     | **TODO** — an ordinary mid-range phone the owner has at hand (OQ-014) |
-| iPhone for Safari checks      | **TODO** |
-| Browser versions measured     | **TODO** |
+| Reference phone (Android)     | Samsung Galaxy S8 (2017), Android 9, 60 Hz screen. The weaker phone: budgets are set on it. |
+| Reference phone (iOS)         | iPhone 13 Pro, current iOS, 120 Hz screen. |
+| Browsers                      | Chrome 138 on the Galaxy S8 (the last Chrome for Android 9; it gets no updates). Current Safari on the iPhone. |
+| Battery health at measurement | **TODO** — record it with every battery measurement; the Galaxy S8 battery is old. |
+| Frame rate Safari gives a page on the 120 Hz screen | **TODO** — measure before choosing the default frame cap. |
+| Slow-motion camera            | iPhone 16 Pro Max at 240 fps (NFR-001; low priority, see section 11). |
+
+A threshold holds only when it holds on both phones (glossary: Reference Phone).
 
 ## 2. Budgets — Smooth
 
@@ -36,8 +41,11 @@ No combination of items and codex powers may exceed these at any moment. The sim
 | Live projectiles (hero and enemies)        | **TODO** | simulation  |
 | Live visual effects (particles, decals)    | **TODO** | renderer: oldest dropped first |
 | Damage numbers on screen                   | **TODO** | renderer: merged per target |
-| Draw calls per frame                       | **TODO** | atlases and batching |
-| Texture memory                             | **TODO** | atlas budget |
+| Animated (skinned) characters on screen    | **TODO** | spawner |
+| Triangles drawn per frame                  | **TODO** | model budget per asset |
+| Draw calls per frame                       | **TODO** | instancing and shared materials |
+| Dynamic lights                             | 1 directional + ambient (ADR-007) | renderer setup |
+| Texture memory                             | **TODO** | shared textures, texture budget |
 | Simulation time per step (p95)             | **TODO** | profiler |
 | Render time per frame (p95)                | **TODO** | profiler |
 | JavaScript heap after a 10-minute run      | **TODO** | profiler |
@@ -50,7 +58,7 @@ budget, it does not get its own.
 
 Garbage-collection pauses are the most common cause of stutter in browser games.
 
-- Enemies, projectiles, effects, damage numbers, and sprites come from **object pools** sized from the budgets above.
+- Enemies, projectiles, effects, damage numbers, and meshes come from **object pools** sized from the budgets above.
   Pools grow only during loading, never during a run.
 - The per-step simulation and the per-frame render create **no new objects, arrays, closures, or strings**. Reuse
   scratch vectors; avoid `map`, `filter`, spread, and template strings in hot paths.
@@ -69,21 +77,33 @@ As ADR-008 describes:
   slower frames.
 - Frame time spikes are measured and reported as the share of frames above 1.5 times the frame interval (NFR-007).
 
-## 5. Device-pixel-ratio cap — Smooth, Kind
+## 5. Cheap 3D — Smooth, Kind
+
+As ADR-007 describes: the camera is fixed and tilted, so everything is built for one view.
+
+- Low-poly models in `.glb` with skeletal animation; flat or vertex colors and small shared textures.
+- One directional light plus ambient light, `MeshLambertMaterial` or `MeshToonMaterial`. **No real-time shadow
+  maps**: characters get blob shadows; floor lighting is baked into vertex colors or textures.
+- Enemies and projectiles of one kind share geometry and material and are drawn with `InstancedMesh` where possible.
+- No post-processing passes and antialiasing off by default; turning either on needs a measurement on the Galaxy S8.
+- Geometry, materials, and textures are created while loading and reused; nothing is created or disposed during a run,
+  except when the browser took the graphics away and the paused run rebuilds them (UC-003 A1).
+
+## 6. Device-pixel-ratio cap — Smooth, Kind
 
 High-density phone screens multiply the pixels to fill without improving readability in motion.
 
 - The canvas renders at `min(devicePixelRatio, cap)` with cap = **TODO** (start measuring at 2).
 - The UI (buttons, text) stays sharp through CSS sizing; only the game canvas is capped.
 
-## 6. Default frame cap — Kind, Smooth
+## 7. Default frame cap — Kind, Smooth
 
 - The game renders at most the frame cap the player chose (UC-015). Offered values: 30 and 60.
 - Default: **TODO** — chosen after measuring battery use (NFR-014) and frame pacing (NFR-007) at both values. A steady
   30 beats an unsteady 60.
 - The cap skips display refreshes in the loop; it never relies on timers.
 
-## 7. Nothing runs in the background — Kind
+## 8. Nothing runs in the background — Kind
 
 - On `visibilitychange` to hidden: pause the run (UC-003 A1), stop requesting animation frames, stop audio, and clear
   every timer and interval, within 1 second (NFR-015).
@@ -91,19 +111,20 @@ High-density phone screens multiply the pixels to fill without improving readabi
 - On return: show the pause screen; nothing resumes without the player (UC-004 BR-002).
 - No polling, no background sync, no wake locks. The service worker does nothing but serve files (C-015).
 
-## 8. Loading — Kind, Smooth
+## 9. Loading — Kind, Smooth
 
 - The precache holds the app shell and the first run's assets only (ADR-002); later content is cached on first use.
-- Assets are compressed (textures in atlases, audio in a compressed format both target browsers play).
+- Assets are compressed (models as `.glb` with compressed geometry where it pays off, small shared textures, audio in
+  a compressed format both target browsers play).
 - Nothing loads during a run; the assets a tier needs are ready before the run starts (NFR-009).
 
-## 9. Profiling on real phones — Smooth, Kind
+## 10. Profiling on real phones — Smooth, Kind
 
 Desktop measurements do not count. Before a change that touches rendering, the simulation, effects, or a legendary
 power is merged:
 
 1. Build the production bundle.
-2. Open the **stress-test scene** on the reference phone. The scene spawns enemies, projectiles, and effects up to
+2. Open the **stress-test scene** on the Galaxy S8 first, then on the iPhone 13 Pro. The scene spawns enemies, projectiles, and effects up to
    every budget of section 2 with the most effect-heavy build in the tuning data, and runs scripted for 60 seconds
    (seeded, so every run is the same).
 3. Record frame times with the built-in frame-time overlay (test build) and, for detail, remote debugging
@@ -113,13 +134,13 @@ power is merged:
    battery drop and whether the phone throttles.
 6. Write the result in the measurement log below.
 
-## 10. Combat-feel playtest checklist
+## 11. Combat-feel playtest checklist
 
-The combat-feel NFRs are checked by playing on the reference phone. Results go into the acceptance protocol.
+The combat-feel NFRs are checked by playing on both reference phones. Results go into the acceptance protocol.
 
 | NFR     | Check by playing |
 |---------|------------------|
-| NFR-001 | Film 10 stick moves and 10 skill presses at 240 fps; count frames from touch to visible reaction. Pass: at most 100 ms in 9 of 10. |
+| NFR-001 | Film 10 stick moves and 10 skill presses in 240 fps slow motion (iPhone 16 Pro Max); count frames from touch to visible reaction. Pass: at most 100 ms in 9 of 10. Low priority: run it when input handling or the loop changes, not before every merge. |
 | NFR-002 | Film a fight; for 10 hits, name the enemy that was hit from the recording. Pass: 10 of 10, each with reaction and sound. |
 | NFR-003 | Play 3 runs; rate "hits feel weighty" from 1 to 5. Pass: 4 or higher. |
 | NFR-004 | Play 3 runs with drops switched off (test build); rate clearing a pack from 1 to 5. Pass: 4 or higher. |

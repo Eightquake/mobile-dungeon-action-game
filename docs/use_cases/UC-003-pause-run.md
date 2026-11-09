@@ -6,7 +6,7 @@
 **Use Case Name:** Pause Run  
 **Primary Actor:** Player  
 **Goal:** The player stops the run at any moment and can leave the game without losing anything.  
-**Trigger:** Player presses the pause button, or the game is hidden because the player switches apps, locks the phone, or receives a call.  
+**Trigger:** Player presses the pause button, or the game is hidden because the player switches apps, locks the phone, or receives a call, or the browser takes away the game's graphics.  
 **Status:** Draft  
 
 **Requirements:** [FR-008, NFR-015, NFR-017, C-007, C-013, C-016](../requirements.md)  
@@ -28,13 +28,13 @@
 
 ### A1: Game is hidden
 
-**Trigger:** The game is hidden instead of the player pressing pause (step 1)  
+**Trigger:** The game is hidden, or the browser takes away the game's graphics, instead of the player pressing pause (step 1)  
 **Flow:**
 
 1. System stops the simulation, the sounds, and the rendering within 1 second.
 2. System stores the run state on the device as a paused run.
 3. System schedules no frames and no timers while the game stays hidden.
-4. Use case continues at step 4 when the game is shown again.
+4. Use case continues at step 4 when the game is shown again and its graphics are restored.
 
 ### A2: Player abandons the run
 

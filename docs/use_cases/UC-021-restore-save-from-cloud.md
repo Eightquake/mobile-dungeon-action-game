@@ -24,7 +24,7 @@
 2. System asks the Cloud Backend for the cloud save.
 3. Cloud Backend returns the cloud save.
 4. System checks the cloud save as UC-011 Import Save checks a save export.
-5. System shows the cloud save next to the save on the device: the number of codex powers, the highest cleared tier, and the date of each.
+5. System shows the cloud save next to the save on the device: the number of codex powers, the number of waiting legendaries, the highest cleared tier, and the date of each.
 6. Player confirms to replace the save on the device.
 7. System keeps the save on the device as a restorable copy, migrates the cloud save to the current save format version, and stores it as the save.
 8. System shows the title screen with the restored progress.
