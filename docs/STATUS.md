@@ -8,7 +8,7 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (Elaboration finished: stack file, pre-approval review of the walking skeleton, backlog as issues)
+Last updated: 2026-11-09 by Claude Code (Elaboration finished: stack file, BP-001 process, pre-approval review of the walking skeleton, backlog as issues)
 
 ## Needs your decision
 
@@ -21,6 +21,7 @@ Last updated: 2026-11-09 by Claude Code (Elaboration finished: stack file, pre-a
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
 | [#7](https://github.com/Eightquake/mobile-dungeon-action-game/pull/7) | none | `docs/architecture/stack.md`: the ADRs mapped onto the AIUP layers. Check the four readings listed in the PR | Nothing to play |
+| [#17](https://github.com/Eightquake/mobile-dungeon-action-game/pull/17) | UC-001–005, 007, 008, 013 | BP-001 Dungeon Run: the run loop as a BPMN process, the last Elaboration artifact. One process only, and no per-path test cases (20 paths); say if you want more | Nothing to play |
 | [#16](https://github.com/Eightquake/mobile-dungeon-action-game/pull/16) | UC-001, 002, 003, 005, 011, 013 | Spec review fixes: "stored run" instead of "paused run" in UC-001; turning the phone to portrait pauses the run (UC-003 A6, OQ-027); UC-005 A2 also ends runs that can't be restored; import offered at launch (UC-013 A6) | Nothing to play |
 
 ## Questions
