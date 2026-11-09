@@ -2,7 +2,8 @@
 
 **Status:** Accepted  
 **Date:** 2026-11-09  
-**Requirements:** C-001, C-015, C-024, NFR-016, NFR-022, NFR-023
+**Requirements:** C-001, C-015, C-024, NFR-016, NFR-022, NFR-023  
+**Amended:** 2026-11-09, at the owner's request: the precache list now comes from our own Vite plugin (ADR-015) instead of vite-plugin-pwa, whose dependencies carry a security advisory with no fix.
 
 ## Context
 
@@ -37,8 +38,8 @@ Decided: **Option A.**
 - TypeScript with `strict` on, ES modules, target the browsers of NFR-023.
 - Vite for the dev server and the production build; npm with a committed `package-lock.json` and `npm ci` in CI; the
   Node.js LTS version pinned in `.nvmrc` and `engines`.
-- vite-plugin-pwa with the `injectManifest` strategy and Workbox precaching, so the service worker is our own file
-  and activation follows ADR-003 (no automatic `skipWaiting`).
+- Our own small Vite plugin writes the precache list into our own service worker, with no Workbox (ADR-015).
+  Activation follows ADR-003 (no automatic `skipWaiting`).
 - ESLint with typescript-eslint and Prettier. The simulation folder gets extra lint rules that forbid
   `Math.random`, `Date`, `performance`, DOM access, and the non-deterministic `Math` functions named in ADR-008.
 - Tuning data as JSON files under `data/`, validated by a schema at build time and in tests.

@@ -8,7 +8,7 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (walking skeleton 1 of 4: project setup)
+Last updated: 2026-11-09 by Claude Code (ADR-015 accepted)
 
 ## Needs your decision
 
@@ -18,7 +18,7 @@ Last updated: 2026-11-09 by Claude Code (walking skeleton 1 of 4: project setup)
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#25](https://github.com/Eightquake/mobile-dungeon-action-game/pull/25) | none (setup for #9) | Vite + TypeScript project, ESLint simulation rules, Vitest, Playwright, `vercel.json`, title screen, the five remaining CI jobs (#8), npm Dependabot, `license` field (#3) | Open the Vercel preview: the title screen shows "[WORKING TITLE]" |
+| [#45](https://github.com/Eightquake/mobile-dungeon-action-game/pull/45) | none (#9 PR 2 builds on it) | ADR-015 accepted (option A) | Nothing to play |
 
 ## Questions
 
@@ -38,20 +38,21 @@ None. The online features (UC-017 to UC-022) are unblocked but low priority, aft
 
 ## Done since last check-in
 
+- Walking skeleton project setup (#25), merged. Issue #9 updated.
 - Elaboration: stack file (#7), walking skeleton review fixes (#16), BP-001 (#17), CI `spec-lint` (#18), LICENSE (#19), Proposed ADR-012 to ADR-014 (#20), all merged.
 - Walking skeleton use cases UC-001, UC-002, UC-003, UC-004, UC-012, UC-013 approved; ADR-012 to ADR-014 accepted (#22, merged).
 - CLAUDE.md test rules (#24). Repository setup (#15): ruleset on `main` with `spec-lint` required, CodeQL default setup, secret scanning with push protection, Dependabot alerts and security updates, Vercel fork protection. Dependabot version updates for GitHub Actions (#23).
 
 ## Next up
 
-- **Walking skeleton** ([#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9)): after #25, UC-012 + UC-013, then UC-001 + UC-002 step 2, then UC-003 + UC-004.
-- After merging #25: add `check`, `unit`, `e2e`, `budget`, `security` as required checks in the ruleset.
+- **Walking skeleton** ([#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9)): UC-012 + UC-013 on top of #45 (the dismissed install hint is stored in the save, so until PR 4 the dismissal lasts only for the session), then UC-001 + UC-002 step 2, then UC-003 + UC-004.
+- Add `check`, `unit`, `e2e`, `budget`, `security` as required checks in the ruleset.
 - Then the phone measurements ([#10](https://github.com/Eightquake/mobile-dungeon-action-game/issues/10)).
 - Later: southpaw option ([#14](https://github.com/Eightquake/mobile-dungeon-action-game/issues/14)); replay verification of leaderboard results, ADR-014 option C ([#21](https://github.com/Eightquake/mobile-dungeon-action-game/issues/21)).
 
 ## Health
 
 - Specs: `spec_lint.py --strict` 0 errors, 0 warnings, 13 infos (system-wide constraints; UC-015 and UC-016 in no test case). Use cases: 6 Approved, 16 Draft. No blocking question.
-- CI: all six ADR-011 jobs exist on #25; only `spec-lint` is required on `main` so far. CodeQL default setup on. `npm audit`: 0 vulnerabilities.
+- CI: all six ADR-011 jobs run on `main`; only `spec-lint` is required on `main` so far. CodeQL default setup on. `npm audit`: 0 vulnerabilities.
 - Performance budgets: not measured yet (all TODO, #10).
 - Free-tier usage: OK, nothing deployed besides Vercel previews.
