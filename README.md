@@ -48,4 +48,8 @@ This is a personal hobby project and isn't set up for outside contributions. Fee
 
 ## License
 
-*To be decided.*
+Copyright (C) 2026 Victor Davidsson
+
+- **Code** is licensed under the [GNU Affero General Public License v3.0 or later](LICENSE) (`AGPL-3.0-or-later`). You may use, study, change, and share it. If you distribute a modified version, or let people play it over a network, you must offer its source under the same license.
+- **Original art, sound, and music** are licensed under [Creative Commons Attribution-ShareAlike 4.0](https://creativecommons.org/licenses/by-sa/4.0/) (`CC-BY-SA-4.0`).
+- **Third-party assets and dependencies** keep their own licenses, which are recorded next to them and must be compatible with the above.
