@@ -20,7 +20,7 @@ Last updated: 2026-11-09 by Claude Code (ADR-010 amended to use the Vercel Git i
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| this PR | none (ADRs) | ADR-010 amended: Vercel's Git integration deploys, no secrets. CLAUDE.md: Accepted ADRs may be amended in place when you ask | Nothing to play. On the Vercel preview of this PR, expect a failed or empty build until there is a `package.json` |
+| [#6](https://github.com/Eightquake/mobile-dungeon-action-game/pull/6) | none (ADRs) | ADR-010 amended: Vercel's Git integration deploys, no secrets. CLAUDE.md: Accepted ADRs may be amended in place when you ask | Nothing to play. On the Vercel preview of this PR, expect a failed or empty build until there is a `package.json` |
 
 ## Questions
 
