@@ -8,7 +8,7 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (walking skeleton 2 of 4: install and offline launch)
+Last updated: 2026-11-09 by Claude Code (walking skeleton 3 of 4: start a run and move the hero)
 
 ## Needs your decision
 
@@ -18,7 +18,7 @@ Last updated: 2026-11-09 by Claude Code (walking skeleton 2 of 4: install and of
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#47](https://github.com/Eightquake/mobile-dungeon-action-game/pull/47) | UC-012, UC-013 (part) | Manifest and icon, own service worker and precache plugin (ADR-015), install hint, persistent storage, rotate prompt | On the phone: add the preview to the home screen, turn on flight mode, launch from the icon |
+| PR 3 (link in #9) | UC-001, UC-002 step 2 | Play button, run state, seeded random streams, fixed-step loop, virtual stick, Three.js view with the following camera, tuning data in `data/` | On the phone: tap Play, drag the stick; the hero follows the thumb and slows with a short drag |
 
 ## Questions
 
@@ -30,6 +30,7 @@ Each has a working assumption in the specs and an entry in [open_questions.md](o
 - **Please confirm:** salvage yields nothing (OQ-023); abandoned runs don't count for bad-luck protection (OQ-024); a paused run can be finished after an update but is never sent to the leaderboard (OQ-025); 3 restorable copies (OQ-026).
 - **Numbers to confirm:** 5 s to run, 4% battery, 5 MB precache, max 6 gear slots, readable-number limits (OQ-006 to OQ-011, OQ-013).
 - **Android:** only Chromium in CI covers NFR-023. **Rested bonus** and **one-time purchase** stay open in the Vision.
+- **Provisional tuning values:** `data/tuning.json` holds starting values for numbers that `docs/Performance.md` marks TODO (5 steps per frame at most, pixel-ratio cap 2) and for the stick and camera. They're tuned on the phone in #10, not final.
 - **Landscape lock on iPhone:** Safari has historically ignored the manifest's orientation lock, so on the reference phone turning to portrait will likely pause the run (UC-003 A6) instead of being locked.
 
 ## Blocked
@@ -38,6 +39,7 @@ None. The online features (UC-017 to UC-022) are unblocked but low priority, aft
 
 ## Done since last check-in
 
+- UC-012, UC-013 install and offline launch (#47), merged.
 - Still open in UC-012 and UC-013 after #47: storing the dismissed hint with the save (PR 4), the play and resume options (PR 3, PR 4), the hint in the settings (UC-015), import (UC-011), online features (UC-017).
 - Walking skeleton project setup (#25), ADR-015 accepted and ADR-006 amended (#45), Dependabot group for TypeScript (#46), all merged.
 - Elaboration: stack file (#7), walking skeleton review fixes (#16), BP-001 (#17), CI `spec-lint` (#18), LICENSE (#19), Proposed ADR-012 to ADR-014 (#20), all merged.
@@ -46,7 +48,7 @@ None. The online features (UC-017 to UC-022) are unblocked but low priority, aft
 
 ## Next up
 
-- **Walking skeleton** ([#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9)): UC-001 + UC-002 step 2, then UC-003 + UC-004.
+- **Walking skeleton** ([#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9)): PR 4, UC-003 + UC-004 (pause, save, resume). It replaces PR 3's Continue stand-in and adds the pause button.
 - Add `check`, `unit`, `e2e`, `budget`, `security` as required checks in the ruleset.
 - Then the phone measurements ([#10](https://github.com/Eightquake/mobile-dungeon-action-game/issues/10)).
 - Later: southpaw option ([#14](https://github.com/Eightquake/mobile-dungeon-action-game/issues/14)); replay verification of leaderboard results, ADR-014 option C ([#21](https://github.com/Eightquake/mobile-dungeon-action-game/issues/21)).
