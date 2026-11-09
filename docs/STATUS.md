@@ -8,12 +8,13 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (Elaboration finished: stack file, BP-001 process, pre-approval review of the walking skeleton, backlog as issues)
+Last updated: 2026-11-09 by Claude Code (Elaboration finished: stack file, BP-001, walking-skeleton review, CI spec-lint, LICENSE, Proposed ADR-012 to ADR-014, backlog as issues)
 
 ## Needs your decision
 
 - **Approve the walking skeleton use cases:** UC-001, UC-002, UC-003, UC-004, UC-012 and UC-013 passed a fresh spec review (lint clean, the review's warnings fixed in [#16](https://github.com/Eightquake/mobile-dungeon-action-game/pull/16)). Once #16 is merged, set them to `Approved` or tell me to. This is the gate from Elaboration to Construction.
 - **One-time repository setup:** branch protection, Dependabot, CodeQL, secret scanning ([#15](https://github.com/Eightquake/mobile-dungeon-action-game/issues/15)).
+- **Proposed ADRs for the online features** ([#20](https://github.com/Eightquake/mobile-dungeon-action-game/pull/20)): ADR-012 Cloudflare Workers + D1 as backend, ADR-013 random player key with a recovery code (answers blocking OQ-022), ADR-014 scheduled replay in GitHub Actions to verify leaderboard results. Accept or reject each; low priority.
 - **Layer plugin:** install `aiup-playwright` for the E2E layer, or not? It's optional; see [#7](https://github.com/Eightquake/mobile-dungeon-action-game/pull/7).
 
 ## Ready for review
@@ -42,7 +43,7 @@ Each has a working assumption in the specs and an entry in [open_questions.md](o
 ## Blocked
 
 - Walking skeleton ([#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9)): waits for the approval above.
-- UC-017 to UC-022 (online features): wait for the backend ADR ([#11](https://github.com/Eightquake/mobile-dungeon-action-game/issues/11)); UC-021 also for the identity ADR ([#12](https://github.com/Eightquake/mobile-dungeon-action-game/issues/12), blocking OQ-022).
+- UC-017 to UC-022 (online features): wait for your decision on ADR-012 to ADR-014 ([#20](https://github.com/Eightquake/mobile-dungeon-action-game/pull/20)); UC-021 also on OQ-022, which ADR-013 answers once accepted.
 
 ## Done since last check-in
 
