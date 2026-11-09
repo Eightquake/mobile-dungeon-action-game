@@ -18,7 +18,7 @@ Last updated: 2026-11-09 by Claude Code (walking skeleton 3 of 4: start a run an
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| PR 3 (link in #9) | UC-001, UC-002 step 2 | Play button, run state, seeded random streams, fixed-step loop, virtual stick, Three.js view with the following camera, tuning data in `data/` | On the phone: tap Play, drag the stick; the hero follows the thumb and slows with a short drag |
+| [#48](https://github.com/Eightquake/mobile-dungeon-action-game/pull/48) | UC-001, UC-002 step 2 | Play button, run state, seeded random streams, fixed-step loop, virtual stick, Three.js view with the following camera, tuning data in `data/` | On the phone: tap Play, drag the stick; the hero follows the thumb and slows with a short drag |
 
 ## Questions
 
