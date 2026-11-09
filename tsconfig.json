@@ -14,7 +14,8 @@
     "isolatedModules": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
   "include": [
     "src",
@@ -23,5 +24,6 @@
     "vite.config.ts",
     "playwright.config.ts",
     "eslint.config.js"
-  ]
+  ],
+  "exclude": ["src/sw"]
 }
