@@ -2,6 +2,9 @@
 
 **Status:** Accepted  
 **Date:** 2026-11-09  
+**Amended:** 2026-11-09, at the owner's request: there is no deploy job. Vercel's Git integration deploys
+(ADR-010 as amended), and branch protection on `main` with all jobs below as required checks keeps unchecked code
+out of production.  
 **Requirements:** C-001, C-023, C-027, C-028, NFR-016, NFR-019, NFR-020, NFR-022
 
 ## Context
@@ -54,7 +57,8 @@ Decided: **GitHub Actions with these jobs, all required for merging into `main`:
 
 Hardening: every third-party action pinned to a commit SHA, `permissions: contents: read` by default, no
 `pull_request_target`, concurrency groups that cancel superseded runs, and caches for npm and the Playwright
-browsers. The deploy job of ADR-010 runs only on `main` after all jobs pass.
+browsers. No job deploys: Vercel's Git integration deploys every push to `main` (ADR-010), so branch protection on
+`main` requires all six jobs to pass before a PR can be merged, and nothing is pushed to `main` directly.
 
 ## Consequences
 
