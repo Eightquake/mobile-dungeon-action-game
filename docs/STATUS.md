@@ -8,7 +8,7 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (owner answers applied to the inception PR)
+Last updated: 2026-11-09 by Claude Code (license constraint C-028 and ADR-011 license check)
 
 ## Needs your decision
 
@@ -19,13 +19,13 @@ Proposed ADRs, in the order they block construction of the walking skeleton:
 - [ ] [ADR-007](adr/ADR-007-threejs-with-fixed-tilted-camera-as-renderer.md) – Rendering: rewritten for your 3D choice. Recommends Three.js with `WebGLRenderer` (WebGL 2, available in every target browser), a fixed tilted camera, low-poly glTF models, no real-time shadows, render-only with our own loop.
 - [ ] [ADR-009](adr/ADR-009-vitest-and-playwright-as-test-frameworks.md) – Tests: recommends Vitest + fast-check + fake-indexeddb, Playwright for journeys and the service worker (Chromium), frozen save fixtures per format version, manual iOS checklist.
 - [ ] [ADR-010](adr/ADR-010-github-pages-as-static-host.md) – Hosting: recommends GitHub Pages via Actions (free while the repo is public); Cloudflare Pages as fallback.
-- [ ] [ADR-011](adr/ADR-011-github-actions-ci-with-free-security-checks.md) – CI: recommends Actions with check, unit, e2e, spec lint (`--strict`, blocking), size budget, Dependabot, dependency review, CodeQL, secret scanning with push protection. The repo is **public**, so all of this is free; it was private earlier today, and going private again changes the answer.
+- [ ] [ADR-011](adr/ADR-011-github-actions-ci-with-free-security-checks.md) – CI: recommends Actions with check, unit, e2e, spec lint (`--strict`, blocking), size budget, Dependabot, dependency review, CodeQL, secret scanning with push protection, and a dependency license allowlist compatible with AGPL-3.0-or-later (new constraint C-028, issue [#4](https://github.com/Eightquake/mobile-dungeon-action-game/issues/4)). The repo is **public**, so all of this is free; it was private earlier today, and going private again changes the answer.
 
 ## Ready for review
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#2](https://github.com/Eightquake/mobile-dungeon-action-game/pull/2) | UC-001 to UC-022, TC-001 to TC-008 | Requirements, glossary, entity model, use case diagram and specs, test cases, open questions, ADR-006 to ADR-011 (Proposed), Performance.md; Requirements lines of ADR-001 to ADR-005 linked. Second commit: your answers (3D/Three.js, sacrifice, landscape, reference phones) | Nothing to play yet. Read: [requirements](requirements.md), [open questions](open_questions.md) |
+| [#2](https://github.com/Eightquake/mobile-dungeon-action-game/pull/2) | UC-001 to UC-022, TC-001 to TC-008 | Requirements, glossary, entity model, use case diagram and specs, test cases, open questions, ADR-006 to ADR-011 (Proposed), Performance.md; Requirements lines of ADR-001 to ADR-005 linked. Second commit: your answers (3D/Three.js, sacrifice, landscape, reference phones). Later: C-028 Copyleft License and the license check in ADR-011 | Nothing to play yet. Read: [requirements](requirements.md), [open questions](open_questions.md) |
 
 ## Questions
 
@@ -49,6 +49,7 @@ Vision ambiguities. Each one has a working assumption in the specs and an entry 
 ## Done since last check-in
 
 - Inception and elaboration specs and Proposed ADRs ([#2](https://github.com/Eightquake/mobile-dungeon-action-game/pull/2)).
+- License decided: AGPL-3.0-or-later for code, CC BY-SA 4.0 for art and sound. Adding the LICENSE file is issue [#3](https://github.com/Eightquake/mobile-dungeon-action-game/issues/3).
 
 ## Next up
 
