@@ -14,13 +14,12 @@ Last updated: 2026-11-09 by Claude Code (ADR-010 amended to use the Vercel Git i
 
 - **One-time setup only you can do:** turn on branch protection on `main` (once the CI jobs of ADR-011 exist, make them required checks), plus Dependabot, CodeQL default setup, and secret scanning with push protection. The Vercel account, project and GitHub app are done, and no secrets are needed (ADR-010 as amended).
 - **Use case review:** UC-001, UC-002, UC-003, UC-004, UC-012 and UC-013 (the walking skeleton) are still `Draft`. Tell me when they're approved.
-- **ADR-011 wording:** it still says "The deploy job of ADR-010 runs only on `main` after all jobs pass". With the Git integration there is no deploy job, so production is gated by branch protection instead (explained in ADR-010). Say if you want ADR-011 amended to match.
 
 ## Ready for review
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#6](https://github.com/Eightquake/mobile-dungeon-action-game/pull/6) | none (ADRs) | ADR-010 amended: Vercel's Git integration deploys, no secrets. CLAUDE.md: Accepted ADRs may be amended in place when you ask | Nothing to play. On the Vercel preview of this PR, expect a failed or empty build until there is a `package.json` |
+| [#6](https://github.com/Eightquake/mobile-dungeon-action-game/pull/6) | none (ADRs) | ADR-010 and ADR-011 amended: Vercel's Git integration deploys, no secrets, branch protection gates production. CLAUDE.md: Accepted ADRs may be amended in place when you ask | Nothing to play. On the Vercel preview of this PR, expect a failed or empty build until there is a `package.json` |
 
 ## Questions
 
