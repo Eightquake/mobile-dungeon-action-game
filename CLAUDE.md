@@ -33,6 +33,25 @@ Never violate these without the owner's explicit approval:
 - Combat feel (responsiveness, hit weight, feedback) is specified as non-functional requirements and playable acceptance criteria. Tuning values live in data files, not code.
 - Follow `docs/Performance.md`. A change that breaks a performance budget is not done.
 
+## Tests
+
+ADR-009 sets the frameworks, ADR-011 the CI jobs that run them, and `docs/architecture/stack.md` § Commands the commands.
+
+- **Code and its tests land in the same PR.** A PR that changes behaviour in `src/`, `backend/`, or `data/` adds or
+  updates tests for it. A PR without new tests says why in its description (docs only, config only, a refactor the
+  existing tests cover).
+- **The use case is the oracle.** Every step, alternative flow, and business rule a PR implements gets a test whose
+  name carries its id (`UC-004 BR-001: ...`). When the code and the spec disagree, the test stays failing and the
+  question goes to `docs/STATUS.md`; never change a test to match the code.
+- **A bug fix starts with a test** that fails without the fix.
+- **Pick the cheapest layer that can show it:** Vitest in `tests/` for the simulation, saves, migrations, and tuning
+  data; Playwright in `tests/e2e/` only for what needs a real browser (service worker, offline, input, the TC
+  journeys); the checklists of `docs/Performance.md` and "Check by playing" in the PR for feel and the real phone.
+- **Always:** a new save format version adds a frozen fixture under `tests/fixtures/saves/` and its migration test
+  (NFR-019); a changed golden replay hash needs the reason in the PR (NFR-022).
+- Run the commands locally before opening a PR. Never skip, disable, or loosen a test to get CI green.
+- Every CI job is a required check on `main`. A PR that adds a job says so, so the owner can add it to the ruleset.
+
 ## Decisions
 
 - Construction follows **Accepted** ADRs only.

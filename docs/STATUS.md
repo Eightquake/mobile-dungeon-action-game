@@ -8,7 +8,7 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (repository setup done; Elaboration done, Construction starts)
+Last updated: 2026-11-09 by Claude Code (test rules in CLAUDE.md; Elaboration done, Construction starts)
 
 ## Needs your decision
 
@@ -18,7 +18,7 @@ Last updated: 2026-11-09 by Claude Code (repository setup done; Elaboration done
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#23](https://github.com/Eightquake/mobile-dungeon-action-game/pull/23) | none | Dependabot weekly grouped updates for GitHub Actions; the last part of the repository setup (#15) | Nothing to play |
+| [#24](https://github.com/Eightquake/mobile-dungeon-action-game/pull/24) | none | CLAUDE.md § Tests: when tests are required, which layer, the use case as oracle | Nothing to play |
 
 ## Questions
 
@@ -40,7 +40,7 @@ None. The online features (UC-017 to UC-022) are unblocked but low priority, aft
 
 - Elaboration: stack file (#7), walking skeleton review fixes (#16), BP-001 (#17), CI `spec-lint` (#18), LICENSE (#19), Proposed ADR-012 to ADR-014 (#20), all merged.
 - Walking skeleton use cases UC-001, UC-002, UC-003, UC-004, UC-012, UC-013 approved; ADR-012 to ADR-014 accepted (#22, merged).
-- Repository setup (#15): ruleset on `main` with `spec-lint` required, CodeQL default setup, secret scanning with push protection, Dependabot alerts and security updates, Vercel fork protection.
+- Repository setup (#15): ruleset on `main` with `spec-lint` required, CodeQL default setup, secret scanning with push protection, Dependabot alerts and security updates, Vercel fork protection. Dependabot version updates for GitHub Actions (#23).
 
 ## Next up
 
