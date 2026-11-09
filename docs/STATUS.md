@@ -18,7 +18,7 @@ Last updated: 2026-11-09 by Claude Code (walking skeleton 3 of 4: start a run an
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#48](https://github.com/Eightquake/mobile-dungeon-action-game/pull/48) | UC-001, UC-002 step 2 | Play button, run state, seeded random streams, fixed-step loop, virtual stick, Three.js view with the following camera, tuning data in `data/` | On the phone: tap Play, drag the stick; the hero follows the thumb and slows with a short drag |
+| [#48](https://github.com/Eightquake/mobile-dungeon-action-game/pull/48) | UC-001, UC-002 step 2 | Play button, run state, seeded random streams, fixed-step loop, virtual stick, Three.js view with the following camera, tuning data in `data/` | Checked on the phone by the owner on 2026-11-09: stick and movement responsive, rotate prompt and Continue work. Ready to merge |
 
 ## Questions
 
@@ -30,7 +30,7 @@ Each has a working assumption in the specs and an entry in [open_questions.md](o
 - **Please confirm:** salvage yields nothing (OQ-023); abandoned runs don't count for bad-luck protection (OQ-024); a paused run can be finished after an update but is never sent to the leaderboard (OQ-025); 3 restorable copies (OQ-026).
 - **Numbers to confirm:** 5 s to run, 4% battery, 5 MB precache, max 6 gear slots, readable-number limits (OQ-006 to OQ-011, OQ-013).
 - **Android:** only Chromium in CI covers NFR-023. **Rested bonus** and **one-time purchase** stay open in the Vision.
-- **Provisional tuning values:** `data/tuning.json` holds starting values for numbers that `docs/Performance.md` marks TODO (5 steps per frame at most, pixel-ratio cap 2) and for the stick and camera. They're tuned on the phone in #10, not final.
+- **Provisional tuning values:** `data/tuning.json` holds starting values for numbers that `docs/Performance.md` marks TODO (5 steps per frame at most, pixel-ratio cap 2) and for the stick and camera. The stick and movement felt right on the phone (2026-11-09); the two measured values are still set in #10.
 - **Landscape lock on iPhone:** Safari has historically ignored the manifest's orientation lock, so on the reference phone turning to portrait will likely pause the run (UC-003 A6) instead of being locked.
 
 ## Blocked
