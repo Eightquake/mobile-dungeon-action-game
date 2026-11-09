@@ -27,7 +27,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Type check, lint, format
-        run: npx tsc --noEmit && npx eslint . && npx prettier --check .
+        run: npm run typecheck && npx eslint . && npx prettier --check .
 
   unit:
     runs-on: ubuntu-latest

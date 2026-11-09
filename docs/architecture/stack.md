@@ -74,7 +74,7 @@ A single Vite application at the repository root, laid out by ADR-006:
 | `src/render/` | Three.js scene, camera, pools, interpolation between simulation states (ADR-007)            |
 | `src/ui/`     | DOM HUD, touch controls, menus, the game loop                                               |
 | `src/save/`   | IndexedDB access, save format versions and migrations, export and import (ADR-004)          |
-| `src/sw/`     | The service worker: caching only, no game logic (ADR-002, C-015)                            |
+| `src/sw/`     | The service worker: caching only, no game logic (ADR-002, ADR-015, C-015)                          |
 | `backend/`    | The Cloud Backend: a Cloudflare Worker with D1 for the online features, TypeScript and Vitest (ADR-012) |
 | `data/`       | Tuning data as JSON, validated by a schema at build time and in tests (C-024)               |
 | `scripts/`    | Build and CI scripts, such as the budget check (`scripts/check-budget.mjs`)                 |
@@ -85,7 +85,7 @@ A single Vite application at the repository root, laid out by ADR-006:
 | Purpose           | Command                                                                   |
 |-------------------|---------------------------------------------------------------------------|
 | Build             | `npm run build`                                                           |
-| Type check, lint  | `npx tsc --noEmit && npx eslint . && npx prettier --check .`              |
+| Type check, lint  | `npm run typecheck && npx eslint . && npx prettier --check .` (`typecheck` also checks `src/sw/` with its WebWorker types) |
 | Unit tests        | `npx vitest run`                                                          |
 | Integration tests | `npx vitest run` (the Service layer is the integration layer)            |
 | End-to-end tests  | `npx playwright test`                                                     |
