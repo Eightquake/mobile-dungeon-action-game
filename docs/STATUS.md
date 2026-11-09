@@ -20,7 +20,7 @@ Last updated: 2026-11-09 by Claude Code (ADR-006 to ADR-011 accepted, hosting mo
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| this PR | none (ADRs) | ADR-006, 007, 008, 009 and 011 set to Accepted. ADR-010 rewritten for Vercel Hobby and accepted (file renamed) | Nothing to play. Read ADR-010 |
+| [#5](https://github.com/Eightquake/mobile-dungeon-action-game/pull/5) | none (ADRs) | ADR-006, 007, 008, 009 and 011 set to Accepted. ADR-010 rewritten for Vercel Hobby and accepted (file renamed) | Nothing to play. Read ADR-010 |
 
 ## Questions
 
