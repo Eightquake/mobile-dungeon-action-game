@@ -1,0 +1,21 @@
+{
+  "simulation": {
+    "steps_per_second": 60,
+    "max_steps_per_frame": 5
+  },
+  "hero": {
+    "speed": 5,
+    "starting_items": []
+  },
+  "stick": {
+    "radius_px": 56,
+    "dead_zone": 0.15,
+    "levels": 16
+  },
+  "camera": {
+    "fov_deg": 35,
+    "tilt_deg": 55,
+    "distance": 22,
+    "max_pixel_ratio": 2
+  }
+}

@@ -1,5 +1,6 @@
-// TC-006 Install and Play Offline, steps 1 to 4 (UC-012, UC-013). Steps 5 and 6 (start a run offline, the hero moves)
-// arrive with UC-001 and UC-002 in walking skeleton PR 3 (#9).
+// TC-006 Install and Play Offline (UC-012, UC-013, UC-001, UC-002 step 2). The postcondition's stored run arrives with
+// saves in walking skeleton PR 4 (#9), and so does the seed override of the test data: moving the hero does not
+// depend on the seed.
 // ADR-009: service worker tests run in Chromium; the manual iOS check covers WebKit.
 import { expect, test } from '@playwright/test';
 
@@ -8,10 +9,12 @@ test.skip(
   'Service worker tests run in Chromium (ADR-009)',
 );
 
-test('TC-006 steps 1-4: the game installs its files on the first visit and launches offline', async ({
+test('TC-006: the game installs its files on the first visit, launches offline, and plays offline', async ({
   page,
   context,
 }) => {
+  // Step 5 plays for 30 seconds.
+  test.setTimeout(90_000);
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   // Validation 2: record whether the game asks for persistent storage.
@@ -52,6 +55,33 @@ test('TC-006 steps 1-4: the game installs its files on the first visit and launc
   await page.reload();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('[WORKING TITLE]');
   await expect(page.getByRole('complementary')).toBeVisible();
+
+  // Step 5: start a run offline and hold the stick to the right for 30 seconds (UC-001 A2, steps 4 and 5).
+  await page.getByRole('button', { name: 'Play' }).click();
+  const canvas = page.locator('canvas.run-canvas');
+  await expect(canvas).toBeVisible();
+  const zone = page.getByLabel('Movement stick');
+  await expect(zone).toBeVisible();
+  const before = await canvas.screenshot();
+  // Nothing moves while the stick is released, so a changed picture below comes from the stick.
+  await page.waitForTimeout(500);
+  expect((await canvas.screenshot()).equals(before)).toBe(true);
+  const box = await zone.boundingBox();
+  if (!box) throw new Error('no stick zone');
+  const x = box.x + box.width / 2;
+  const y = box.y + box.height / 2;
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x + 40, y, { steps: 4 });
+  await page.mouse.move(x + 200, y, { steps: 4 });
+
+  // Step 6: the hero moves (UC-002 step 2); the camera follows the hero, so the view changes.
+  await expect(async () => {
+    expect((await canvas.screenshot()).equals(before)).toBe(false);
+  }).toPass({ timeout: 5_000 });
+  await page.waitForTimeout(30_000);
+  await page.mouse.up();
+  await expect(canvas).toBeVisible();
 
   // Validation 1: no network error from step 3 on.
   expect(failed).toEqual([]);

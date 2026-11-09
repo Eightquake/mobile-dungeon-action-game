@@ -95,3 +95,78 @@ body {
     text-align: center;
   }
 }
+
+/* UC-001 step 1: the Play button under the title. At least 9 mm on the phone (NFR-005). */
+.title-menu {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: center;
+  align-self: center;
+}
+
+.play {
+  min-width: 10rem;
+  min-height: 3.5rem;
+  padding: 0 2rem;
+  border: 1px solid #ffb347;
+  border-radius: 0.5rem;
+  background: #ffb347;
+  color: var(--bg);
+  font: inherit;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* UC-001 step 5, UC-002 step 2: the run fills the screen; the left half is the stick's touch zone. */
+.run-screen {
+  position: fixed;
+  inset: 0;
+}
+
+.run-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.stick-zone {
+  position: absolute;
+  inset: 0 50% 0 0;
+  touch-action: none;
+}
+
+.stick-base {
+  position: absolute;
+  display: none;
+  border: 2px solid rgb(236 228 216 / 35%);
+  border-radius: 50%;
+  background: rgb(236 228 216 / 8%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.stick-base.active {
+  display: block;
+}
+
+.stick-knob {
+  position: absolute;
+  inset: 30%;
+  border-radius: 50%;
+  background: rgb(236 228 216 / 45%);
+}
+
+/* Stand-in for the pause screen of UC-003 until walking skeleton PR 4. */
+.run-continue {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  min-width: 10rem;
+  min-height: 3.5rem;
+  border: 1px solid #ffb347;
+  border-radius: 0.5rem;
+  background: #ffb347;
+  color: var(--bg);
+  font: inherit;
+  font-size: 1.25rem;
+  transform: translate(-50%, -50%);
+}

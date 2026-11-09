@@ -1,0 +1,8 @@
+[
+  {
+    "id": 1,
+    "enemy_strength": 1,
+    "floor": { "half_width": 20, "half_depth": 20 },
+    "entrance": { "x": 0, "z": 16 }
+  }
+]

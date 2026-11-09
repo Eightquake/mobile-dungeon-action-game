@@ -1,3 +1,5 @@
 // The deterministic simulation (ADR-008): state in, inputs in, state out.
-// It stays empty until UC-001 adds the run state; the lint rules for this folder already apply.
-export {};
+export { TIERS, TUNING } from './data';
+export { tierWithoutChoice, unlockedTiers } from './ladder';
+export { createRun, step, type RunState, type StepInput } from './run';
+export type { TierData, Tuning } from './tuning';
