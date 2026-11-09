@@ -1,6 +1,6 @@
 # ADR-015: Own Vite plugin for the precache list instead of vite-plugin-pwa
 
-**Status:** Proposed  
+**Status:** Accepted  
 **Date:** 2026-11-09  
 **Requirements:** C-015, C-014, NFR-016
 
@@ -41,9 +41,9 @@ ADR-011, whose security job it leaves unchanged.
 
 ## Decision
 
-Recommended: **Option A.** The owner decides.
+Decided: **Option A.**
 
-If accepted:
+In detail:
 
 - `vite.config.ts` gets a small local plugin (in `scripts/` or `vite.config.ts` itself). It builds `src/sw/sw.ts` as
   `/sw.js` with no hash, and in `generateBundle` replaces a placeholder in it with the precache list. The list

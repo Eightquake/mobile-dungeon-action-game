@@ -8,18 +8,18 @@ Rules for agents:
 - Write "None" in a section that has nothing, so the owner knows it was checked.
 -->
 
-Last updated: 2026-11-09 by Claude Code (walking skeleton 2 of 4: blocked on ADR-015)
+Last updated: 2026-11-09 by Claude Code (ADR-015 accepted)
 
 ## Needs your decision
 
-- **[ADR-015](adr/ADR-015-own-vite-plugin-for-the-precache-list.md) (Proposed):** vite-plugin-pwa (ADR-006) brings in `deepmerge`, which has a low advisory and no fix, so the `security` check fails. The recommendation is our own small precache plugin and service worker, with no Workbox. Walking skeleton PR 2 (UC-012, UC-013) waits for this.
+- **ADR-006 amendment:** ADR-015 (accepted) replaces ADR-006's vite-plugin-pwa bullet. May I amend that bullet in place to point to ADR-015?
 - **Layer plugin:** install `aiup-playwright` for the E2E layer, or not? Optional, see `docs/architecture/stack.md`.
 
 ## Ready for review
 
 | PR | Use case | What changed | Check by playing |
 |----|----------|--------------|------------------|
-| [#45](https://github.com/Eightquake/mobile-dungeon-action-game/pull/45) | none (blocks #9 PR 2) | Proposed ADR-015 | Nothing to play |
+| [#45](https://github.com/Eightquake/mobile-dungeon-action-game/pull/45) | none (#9 PR 2 builds on it) | ADR-015 accepted (option A) | Nothing to play |
 
 ## Questions
 
@@ -35,7 +35,7 @@ Each has a working assumption in the specs and an entry in [open_questions.md](o
 
 ## Blocked
 
-- Walking skeleton PR 2 (UC-012, UC-013) waits for ADR-015. The online features (UC-017 to UC-022) are unblocked but low priority, after the core game.
+None. The online features (UC-017 to UC-022) are unblocked but low priority, after the core game.
 
 ## Done since last check-in
 
@@ -46,7 +46,7 @@ Each has a working assumption in the specs and an entry in [open_questions.md](o
 
 ## Next up
 
-- **Walking skeleton** ([#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9)): UC-012 + UC-013 after ADR-015 (the dismissed install hint is stored in the save, so until PR 4 the dismissal lasts only for the session), then UC-001 + UC-002 step 2, then UC-003 + UC-004.
+- **Walking skeleton** ([#9](https://github.com/Eightquake/mobile-dungeon-action-game/issues/9)): UC-012 + UC-013 on top of #45 (the dismissed install hint is stored in the save, so until PR 4 the dismissal lasts only for the session), then UC-001 + UC-002 step 2, then UC-003 + UC-004.
 - Add `check`, `unit`, `e2e`, `budget`, `security` as required checks in the ruleset.
 - Then the phone measurements ([#10](https://github.com/Eightquake/mobile-dungeon-action-game/issues/10)).
 - Later: southpaw option ([#14](https://github.com/Eightquake/mobile-dungeon-action-game/issues/14)); replay verification of leaderboard results, ADR-014 option C ([#21](https://github.com/Eightquake/mobile-dungeon-action-game/issues/21)).
