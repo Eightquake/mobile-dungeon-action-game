@@ -77,6 +77,7 @@ A single Vite application at the repository root, laid out by ADR-006:
 | `src/sw/`     | The service worker: caching only, no game logic (ADR-002, C-015)                            |
 | `backend/`    | The Cloud Backend: a Cloudflare Worker with D1 for the online features, TypeScript and Vitest (ADR-012) |
 | `data/`       | Tuning data as JSON, validated by a schema at build time and in tests (C-024)               |
+| `scripts/`    | Build and CI scripts, such as the budget check (`scripts/check-budget.mjs`)                 |
 | `tests/`      | Vitest tests next to their layer name, `tests/e2e/` for Playwright, `tests/fixtures/saves/` for frozen saves (ADR-009) |
 
 ## Commands
@@ -88,10 +89,10 @@ A single Vite application at the repository root, laid out by ADR-006:
 | Unit tests        | `npx vitest run`                                                          |
 | Integration tests | `npx vitest run` (the Service layer is the integration layer)            |
 | End-to-end tests  | `npx playwright test`                                                     |
+| Budget            | `npm run build && npm run budget` (NFR-016 precache size, no `TEST_BUILD_ONLY` code; ADR-009) |
 | Spec lint         | `python3 tools/aiup/spec-review/scripts/spec_lint.py --docs docs --strict` |
 
-The commands are those of ADR-011. They work once the walking skeleton adds `package.json` and the CI work vendors
-the spec lint.
+The commands are those of ADR-011; CI runs each in its own job (`.github/workflows/ci.yml`).
 
 ## Markers
 
