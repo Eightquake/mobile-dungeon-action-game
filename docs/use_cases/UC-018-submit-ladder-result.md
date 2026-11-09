@@ -66,9 +66,9 @@ Every submitted result carries its seed, game version, and input log, so that it
 
 A leaderboard entry stays until the player improves it or deletes their cloud data. Leaderboards have no reset schedule and no time-limited rewards (C-022).
 
-### BR-004: For fun until verified
+### BR-004: Checked, not verified
 
-Until a verification approach is decided, the leaderboard is shown as unverified.
+The Cloud Backend refuses a result with an unknown game version, a play time outside the allowed range, or an input log above the size limit. No replay confirms a result yet, so the leaderboard shows every entry as unverified.
 
 ### BR-005: One game version per result
 

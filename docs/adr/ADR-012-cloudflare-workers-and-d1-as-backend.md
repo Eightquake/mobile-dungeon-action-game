@@ -1,6 +1,6 @@
 # ADR-012: Cloudflare Workers and D1 as the backend for the online features
 
-**Status:** Proposed  
+**Status:** Accepted  
 **Date:** 2026-11-09  
 **Requirements:** C-001, C-004, C-019, C-020, C-021, C-023, C-028, NFR-025, NFR-026, NFR-027
 
@@ -29,7 +29,7 @@ Terms checked on 2026-11-09 on the providers' pricing and limits pages.
 
 ## Decision
 
-Recommended: **Option A, Cloudflare Workers with D1.**
+Decided: **Option A, Cloudflare Workers with D1.**
 
 - One Worker serves a small JSON API for the online use cases; its code lives in `backend/` in this repository,
   is TypeScript like the game (ADR-006), and is tested with Vitest.

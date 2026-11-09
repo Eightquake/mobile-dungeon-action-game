@@ -5,7 +5,7 @@ independent of how the team documents its architecture. The Layers table says wh
 each technical layer: `/use-case-implement` runs the Skill column bottom-up, `/use-case-test` runs the Test skill
 column from the integration layer up, and `/use-case-coverage` searches for the markers in the last table.
 
-**Last updated:** 2026-11-09
+**Last updated:** 2026-11-09 (ADR-012 accepted)
 
 ## Layers
 
@@ -13,7 +13,7 @@ column from the integration layer up, and `/use-case-coverage` searches for the 
 |-------------|----------------------------------------------------------------------------|-------|------------|------------------------------|
 | Migration   | Save-format migrations in TypeScript, one per format version (ADR-004, C-017) | –     | –          | `src/save/`                  |
 | Persistence | IndexedDB, faked by fake-indexeddb in unit tests (ADR-004, ADR-009)        | –     | –          | `src/save/`                  |
-| Client      | HTTPS calls to the Cloud Backend; provider not decided (ADR-005, ADR to come) | –     | –          | not decided                  |
+| Client      | HTTPS calls from the game to the Cloud Backend on Cloudflare Workers (ADR-012, ADR-013) | –     | –          | not decided until UC-017 is built |
 | Service     | TypeScript, deterministic fixed-timestep simulation, Vitest (ADR-006, ADR-008, ADR-009) | –     | –          | `src/sim/`, tuning in `data/` |
 | API         | –                                                                          | –     | –          | –                            |
 | UI          | Three.js `WebGLRenderer` and a DOM HUD (ADR-007)                           | –     | –          | `src/render/`, `src/ui/`     |
@@ -54,15 +54,15 @@ tests; use cases are tested with Vitest.
 
 | System        | Contract | Location    |
 |---------------|----------|-------------|
-| Cloud Backend | –        | not decided |
+| Cloud Backend | –        | `backend/`  |
 
 The systems our system calls, by the name the use cases write on their `**Secondary Actors:**` line: the Client
 layer builds an adapter for each one from its contract (OpenAPI or AsyncAPI; `–` while there is none). A secondary
 actor without a row is a person or a role. Without a Client layer the section is dropped.
 
 The Browser (UC-012, UC-013) is the platform the game runs in and is reached through Web APIs, not through a
-Client adapter, so it has no row. The Cloud Backend has no provider, contract, or location until the backend ADR
-under ADR-005 is accepted; UC-017 to UC-022 wait for it.
+Client adapter, so it has no row. The Cloud Backend is our own Cloudflare Worker with D1 (ADR-012), built in
+`backend/` of this repository; its API contract is written when UC-017 is specified for construction.
 
 ## Module layout
 
@@ -75,6 +75,7 @@ A single Vite application at the repository root, laid out by ADR-006:
 | `src/ui/`     | DOM HUD, touch controls, menus, the game loop                                               |
 | `src/save/`   | IndexedDB access, save format versions and migrations, export and import (ADR-004)          |
 | `src/sw/`     | The service worker: caching only, no game logic (ADR-002, C-015)                            |
+| `backend/`    | The Cloud Backend: a Cloudflare Worker with D1 for the online features, TypeScript and Vitest (ADR-012) |
 | `data/`       | Tuning data as JSON, validated by a schema at build time and in tests (C-024)               |
 | `tests/`      | Vitest tests next to their layer name, `tests/e2e/` for Playwright, `tests/fixtures/saves/` for frozen saves (ADR-009) |
 

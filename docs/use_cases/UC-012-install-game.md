@@ -8,7 +8,7 @@
 **Secondary Actors:** Browser  
 **Goal:** The player opens the game from a link and keeps it on the home screen like an app, with its save protected from being cleared.  
 **Trigger:** Player opens the link to the game in the browser.  
-**Status:** Draft  
+**Status:** Approved  
 
 **Requirements:** [FR-021, NFR-016, NFR-023, C-001, C-002, C-018](../requirements.md)  
 **Priority:** High  
@@ -27,7 +27,7 @@
 5. Player adds the game to the home screen as the hint explains.
 6. Browser places the game's icon on the home screen.
 7. Player launches the game from the icon.
-8. System opens the title screen full screen, without the browser's address bar, and no longer shows the hint.
+8. System opens the title screen full screen and locked to landscape where the device allows it, without the browser's address bar, and no longer shows the hint.
 
 ## Alternative Flows
 

@@ -7,7 +7,7 @@
 **Primary Actor:** Player  
 **Goal:** The player starts a new run at a tier of the challenge ladder and controls the hero within seconds of launching the game.  
 **Trigger:** Player chooses to play on the title screen, on the end-of-run summary, or on the challenge ladder.  
-**Status:** Draft  
+**Status:** Approved  
 
 **Requirements:** [FR-001, FR-015, NFR-009, NFR-011, C-003, C-007, C-025](../requirements.md)  
 **Priority:** High  

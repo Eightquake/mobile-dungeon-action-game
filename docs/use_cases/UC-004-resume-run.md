@@ -7,7 +7,7 @@
 **Primary Actor:** Player  
 **Goal:** The player continues a paused run exactly where they left it, also after the game was closed.  
 **Trigger:** Player chooses to resume on the pause screen or on the title screen.  
-**Status:** Draft  
+**Status:** Approved  
 
 **Requirements:** [FR-009, NFR-017, NFR-019, C-014, C-017](../requirements.md)  
 **Priority:** High  

@@ -289,7 +289,7 @@ A player registered with the cloud backend, without personal data (C-020).
 | Attribute    | Description                                | Data Type | Length/Precision | Validation Rules |
 |--------------|--------------------------------------------|-----------|------------------|------------------|
 | id           | Unique identifier                          | Long      | 19               | Primary Key, Sequence |
-| player_key   | Random key the device registered with      | String    | 64               | Not Null, Unique |
+| player_key   | Hash of the random key the device registered with; the key itself is never stored (ADR-013) | String    | 64               | Not Null, Unique |
 | display_name | Name shown on the leaderboard              | String    | 16               | Not Null         |
 | created_at   | When the player registered                 | DateTime  | -                | Not Null         |
 

@@ -7,7 +7,7 @@
 **Primary Actor:** Player  
 **Goal:** The player launches the game and plays without any network connection, for example on a bus.  
 **Trigger:** Player launches the game from the home screen icon or a bookmarked link while the device has no network connection.  
-**Status:** Draft  
+**Status:** Approved  
 
 **Requirements:** [FR-022, NFR-009, NFR-021, NFR-024, NFR-025, C-003, C-015](../requirements.md)  
 **Priority:** High  
