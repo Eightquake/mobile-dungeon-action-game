@@ -44,7 +44,7 @@ Recommended:
   local static server and switching between them (TC-005).
 - **Test build:** a build flag adds a seed override and test commands (defeat the guardian, defeat the hero). The flag
   is compiled out of production builds, and CI checks that the production bundle contains none of them.
-- **Real devices:** both reference phones (Safari on the iPhone 13 Pro, Chrome 138 on the Galaxy S8) are checked by hand with a checklist in the acceptance
+- **Real devices:** the reference phone (Safari on the iPhone 13 Pro) is checked by hand with a checklist in the acceptance
   protocol, including install, offline launch, and the combat-feel NFRs.
 
 ## Consequences

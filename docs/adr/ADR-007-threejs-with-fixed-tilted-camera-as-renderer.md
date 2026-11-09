@@ -15,11 +15,8 @@ The owner decided on 2026-11-09 how the game looks: **3D with a fixed, tilted th
 low-poly art style**, in the spirit of the action RPG the Vision names as its reference. The camera follows the hero
 but never rotates, and the player never controls it.
 
-The two reference phones set the floor:
-
-- **Samsung Galaxy S8** (2017): its last Android version is 9, and Chrome 138 is the last Chrome for Android 9.
-  It has WebGL 2 but no WebGPU, and its browser receives no updates.
-- **iPhone 13 Pro**: current Safari with WebGL 2 and WebGPU, and a 120 Hz screen.
+The reference phone is an **iPhone 13 Pro**: current Safari with WebGL 2 and WebGPU, and a 120 Hz screen. NFR-023
+also covers Chrome on Android, where WebGPU is missing on many phones while WebGL 2 is nearly everywhere.
 
 So the renderer must run on WebGL 2 alone. Three.js requires WebGL 2 since r163; its newer `WebGPURenderer` falls
 back to WebGL 2 where WebGPU is missing, and new renderer features go into `WebGPURenderer` rather than
@@ -33,8 +30,8 @@ keeps the game rules the same as in a top-down 2D game: height is only visual.
 
 | Option | For | Against |
 |--------|-----|---------|
-| **A. Three.js, `WebGLRenderer`** | The most used 3D library on the web, MIT; mature and well documented; loads glTF models with skeletal animation; instancing for many identical enemies and projectiles; we call `render()` ourselves, so the loop stays ours; works on WebGL 2, so on both reference phones | Only rendering: input, audio, collision, and scenes are ours (which ADR-008 wants anyway); new features land in `WebGPURenderer` first |
-| B. Three.js, `WebGPURenderer` with WebGL 2 fallback | Where the library is heading; WebGPU on the iPhone, node materials (TSL) | The Galaxy S8 always takes the fallback, so we test two backends and gain nothing on the weaker phone; larger bundle; younger code |
+| **A. Three.js, `WebGLRenderer`** | The most used 3D library on the web, MIT; mature and well documented; loads glTF models with skeletal animation; instancing for many identical enemies and projectiles; we call `render()` ourselves, so the loop stays ours; works on WebGL 2, so on every target browser | Only rendering: input, audio, collision, and scenes are ours (which ADR-008 wants anyway); new features land in `WebGPURenderer` first |
+| B. Three.js, `WebGPURenderer` with WebGL 2 fallback | Where the library is heading; WebGPU on the iPhone, node materials (TSL) | Android phones without WebGPU take the fallback, so we test two backends; larger bundle; younger code |
 | C. Babylon.js | Complete 3D engine with tooling, inspector, and physics | Larger bundle; the engine owns more of the loop and the scene, which works against a separate deterministic simulation |
 | D. PlayCanvas engine | Fast, MIT, good on mobile | Built around its own editor and entity system; the free editor tier makes projects public; smaller community for questions |
 | E. PixiJS v8 (2D) with pre-rendered sprites | Lightest renderer; easiest to keep smooth | Every animation needed in 8 or 16 directions to look 3D; few free sprite sets in that style; contradicts the owner's choice of 3D |
@@ -66,9 +63,9 @@ Recommended: **Option A, Three.js with `WebGLRenderer`**, the version pinned in 
 ## Consequences
 
 - The renderer reads simulation state and owns nothing else, so a later switch, for example to option B when
-  every reference phone has WebGPU, costs only the `src/render/` folder and is a new ADR.
+  WebGPU is available in every target browser, costs only the `src/render/` folder and is a new ADR.
 - 3D costs more per frame than 2D sprites. The budgets in docs/Performance.md (triangles, draw calls, animated
-  characters, texture memory) are measured on the Galaxy S8, the weaker of the two phones, before content grows.
+  characters, texture memory) are measured on the reference phone before content grows.
 - The fixed camera makes free 3D asset packs usable and gives turning in any direction for free, but every model and
   effect has to read well from one angle on a small screen.
 - Input, audio, collision, and scene flow are written by us, which keeps the simulation deterministic and headless.

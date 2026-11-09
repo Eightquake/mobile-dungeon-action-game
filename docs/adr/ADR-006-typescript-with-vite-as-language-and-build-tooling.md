@@ -18,8 +18,7 @@ Construction needs a language and a build before the first line of game code. Th
 - **Tuning values in data (C-024).** Data files must be importable and validated at build time.
 - **Agents write most of the code** and the owner reviews in the evenings. A mainstream stack with strong types
   catches mistakes before review.
-- **Browsers (NFR-023):** latest 2 Safari iOS and Chrome Android versions, plus Chrome 138 on the Galaxy S8, which
-  gets no updates. Modern ES modules are fine; the build target must include Chrome 138.
+- **Browsers (NFR-023):** latest 2 Safari iOS and Chrome Android versions, so modern ES modules are fine.
 
 ### Options
 

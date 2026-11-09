@@ -156,9 +156,9 @@ The Vision asks for few gear slots without a number.
 
 The Vision says an ordinary mid-range phone. Every performance threshold depends on the device; the owner has to have it at hand to measure.
 
-**Answer:** Two reference phones: an iPhone 13 Pro and a Samsung Galaxy S8.
+**Answer:** An iPhone 13 Pro. A Samsung Galaxy S8 was named too, then dropped the same day: Android 9 gets no Chrome after version 138, so its browser is frozen.
 **Answered by:** Owner, 2026-11-09
-**Resolved in:** Glossary: Reference Phone, NFR-023
+**Resolved in:** Glossary: Reference Phone
 
 ## OQ-015: Do equipped items carry over from one run to the next?
 

@@ -1,7 +1,7 @@
 # Performance Guidelines
 
 A living document. Every change follows it (C-027); a change that breaks a budget here is not done. Numbers marked
-**TODO** are filled in from measurements on the reference phones, never guessed. When a number is measured, write it
+**TODO** are filled in from measurements on the reference phone, never guessed. When a number is measured, write it
 here with the date and the build it was measured on.
 
 Each guideline names the Vision principle it serves:
@@ -15,20 +15,17 @@ Related requirements: NFR-007 (frame pacing), NFR-008 (effect budget), NFR-014 (
 background), NFR-016 (first load size), NFR-001 to NFR-006 (combat feel). Related decisions: ADR-007 (renderer),
 ADR-008 (simulation).
 
-## 1. Reference phones — Smooth, Kind
+## 1. Reference phone — Smooth, Kind
 
-All thresholds are measured on two real phones, not on a desktop browser or an emulator.
+All thresholds are measured on one real phone, not on a desktop browser or an emulator.
 
 | Item                          | Value |
 |-------------------------------|-------|
-| Reference phone (Android)     | Samsung Galaxy S8 (2017), Android 9, 60 Hz screen. The weaker phone: budgets are set on it. |
-| Reference phone (iOS)         | iPhone 13 Pro, current iOS, 120 Hz screen. |
-| Browsers                      | Chrome 138 on the Galaxy S8 (the last Chrome for Android 9; it gets no updates). Current Safari on the iPhone. |
-| Battery health at measurement | **TODO** — record it with every battery measurement; the Galaxy S8 battery is old. |
+| Reference phone               | iPhone 13 Pro, current iOS, 120 Hz screen. |
+| Browser                       | Current Safari on the iPhone. |
+| Battery health at measurement | **TODO** — record it with every battery measurement. |
 | Frame rate Safari gives a page on the 120 Hz screen | **TODO** — measure before choosing the default frame cap. |
 | Slow-motion camera            | iPhone 16 Pro Max at 240 fps (NFR-001; low priority, see section 11). |
-
-A threshold holds only when it holds on both phones (glossary: Reference Phone).
 
 ## 2. Budgets — Smooth
 
@@ -85,7 +82,7 @@ As ADR-007 describes: the camera is fixed and tilted, so everything is built for
 - One directional light plus ambient light, `MeshLambertMaterial` or `MeshToonMaterial`. **No real-time shadow
   maps**: characters get blob shadows; floor lighting is baked into vertex colors or textures.
 - Enemies and projectiles of one kind share geometry and material and are drawn with `InstancedMesh` where possible.
-- No post-processing passes and antialiasing off by default; turning either on needs a measurement on the Galaxy S8.
+- No post-processing passes and antialiasing off by default; turning either on needs a measurement on the reference phone.
 - Geometry, materials, and textures are created while loading and reused; nothing is created or disposed during a run,
   except when the browser took the graphics away and the paused run rebuilds them (UC-003 A1).
 
@@ -124,7 +121,7 @@ Desktop measurements do not count. Before a change that touches rendering, the s
 power is merged:
 
 1. Build the production bundle.
-2. Open the **stress-test scene** on the Galaxy S8 first, then on the iPhone 13 Pro. The scene spawns enemies, projectiles, and effects up to
+2. Open the **stress-test scene** on the reference phone. The scene spawns enemies, projectiles, and effects up to
    every budget of section 2 with the most effect-heavy build in the tuning data, and runs scripted for 60 seconds
    (seeded, so every run is the same).
 3. Record frame times with the built-in frame-time overlay (test build) and, for detail, remote debugging
@@ -136,7 +133,7 @@ power is merged:
 
 ## 11. Combat-feel playtest checklist
 
-The combat-feel NFRs are checked by playing on both reference phones. Results go into the acceptance protocol.
+The combat-feel NFRs are checked by playing on the reference phone. Results go into the acceptance protocol.
 
 | NFR     | Check by playing |
 |---------|------------------|

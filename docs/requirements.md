@@ -6,8 +6,8 @@ catalog; a conflict is a change to this catalog or a proposed Vision change, nev
 - Domain terms follow [glossary.md](glossary.md).
 - Thresholds that need a measurement or the owner's word are recorded as assumptions in
   [open_questions.md](open_questions.md) and can change after measurement.
-- The **reference phones** are the iPhone 13 Pro and the Samsung Galaxy S8 named in [Performance.md](Performance.md).
-  Every performance and battery threshold is measured on both and holds only when it holds on both.
+- The **reference phone** is the iPhone 13 Pro named in [Performance.md](Performance.md). Every performance and
+  battery threshold is measured on it.
 - Requirements marked with priority **Low** belong to the optional online features (ADR-005). The game is complete
   without them.
 
@@ -49,7 +49,7 @@ catalog; a conflict is a change to this catalog or a proposed Vision change, nev
 
 ## Non-Functional Requirements
 
-Combat feel (NFR-001 to NFR-008) is checked by playing a build on both reference phones. Each of these rows names its
+Combat feel (NFR-001 to NFR-008) is checked by playing a build on the reference phone. Each of these rows names its
 playable acceptance criterion; the checklist lives in [Performance.md](Performance.md) and in the acceptance protocol.
 
 | ID      | Title                      | Requirement                                                                                                                                                                                                                                                        | Category        | Priority | Status |
@@ -76,7 +76,7 @@ playable acceptance criterion; the checklist lives in [Performance.md](Performan
 | NFR-020 | Import Robustness          | Importing any of 1,000 generated malformed or out-of-range save exports shows an error message, leaves the current save unchanged, and never stops the game.                                                                                                                 | Security        | High     | Open   |
 | NFR-021 | Offline Completeness       | After one complete visit, every use case except the online features works with the device in flight mode.                                                                                                                                                       | Availability    | High     | Open   |
 | NFR-022 | Deterministic Simulation   | Replaying the recorded inputs of a run with the same seed and game version produces the same end state, bit for bit, in Chromium, Firefox, and WebKit.                                                                                                            | Portability     | High     | Open   |
-| NFR-023 | Browser Support            | The game installs and runs in the latest 2 major versions of Safari on iOS and of Chrome on Android, and in Chrome 138 on Android 9, the last version available on the Galaxy S8 reference phone.                                                                                                                                                              | Portability     | High     | Open   |
+| NFR-023 | Browser Support            | The game installs and runs in the latest 2 major versions of Safari on iOS and of Chrome on Android.                                                                                                                                                              | Portability     | High     | Open   |
 | NFR-024 | Screen Orientation         | The game is fully playable in landscape orientation, with the virtual stick under the left thumb and the skill buttons under the right thumb, on screens from 360 to 932 CSS pixels wide, and shows a rotate prompt in portrait orientation.                                                                                                                   | Portability     | High     | Open   |
 | NFR-025 | Backend Independence       | With the cloud backend unreachable, slow, or out of quota, every offline use case meets its thresholds, and a run shows 0 network error messages.                                                                                                                 | Availability    | Low      | Open   |
 | NFR-026 | Backend Rate Limits        | Every cloud backend endpoint authenticates the request, validates every input field, and rejects requests above a per-player rate limit that keeps the whole service within its free quota.                                                                       | Security        | Low      | Open   |

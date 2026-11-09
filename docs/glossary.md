@@ -46,7 +46,7 @@ One name per concept. Requirements, use cases, test cases, and code use these te
 | Seed                   | The number from which all randomness of a run is derived, so that the same seed and inputs produce the same run.                                          |                     |
 | Input Log              | The recorded player inputs of a run per simulation step, used to replay the run.                                                                           | Replay file         |
 | Frame Cap              | The highest number of frames per second the game renders.                                                                                                   | FPS limit           |
-| Reference Phone        | Each of the two phones on which every performance and battery threshold is measured: an iPhone 13 Pro and a Samsung Galaxy S8. A threshold holds only when it holds on both. | Test device         |
+| Reference Phone        | The iPhone 13 Pro on which every performance and battery threshold is measured.                                                                             | Test device         |
 | Stress-Test Scene      | A scripted scene that fills the screen up to every effect budget, used to measure frame pacing.                                                             | Benchmark level     |
 | Effect Budget          | The highest allowed number of live enemies, projectiles, or visual effects at one time.                                                                    |                     |
 | Tuning Data            | The data files that hold combat and balance values, such as damage, drop chances, and hit-stop durations.                                                  |                     |
